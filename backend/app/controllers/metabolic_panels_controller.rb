@@ -1,0 +1,2 @@
+class MetabolicPanelsController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class CholesterolsController < ApplicationController
+end

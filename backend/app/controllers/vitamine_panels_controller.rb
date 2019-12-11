@@ -1,0 +1,2 @@
+class VitaminePanelsController < ApplicationController
+end
