@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_11_185947) do
+ActiveRecord::Schema.define(version: 2019_12_12_191011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,10 +39,8 @@ ActiveRecord::Schema.define(version: 2019_12_11_185947) do
 
   create_table "conversations", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "message_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["message_id"], name: "index_conversations_on_message_id"
     t.index ["user_id"], name: "index_conversations_on_user_id"
   end
 
@@ -62,6 +60,8 @@ ActiveRecord::Schema.define(version: 2019_12_11_185947) do
     t.string "ai_respond"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "conversation_id", null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
   end
 
   create_table "metabolic_panels", force: :cascade do |t|
@@ -114,10 +114,10 @@ ActiveRecord::Schema.define(version: 2019_12_11_185947) do
 
   add_foreign_key "blood_pressures", "users"
   add_foreign_key "cholesterols", "users"
-  add_foreign_key "conversations", "messages"
   add_foreign_key "conversations", "users"
   add_foreign_key "location_ratings", "my_locations"
   add_foreign_key "location_ratings", "users"
+  add_foreign_key "messages", "conversations"
   add_foreign_key "metabolic_panels", "users"
   add_foreign_key "vitamine_panels", "users"
   add_foreign_key "weights", "users"
