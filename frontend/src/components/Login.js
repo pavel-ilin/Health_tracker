@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loginAction } from '../actionCreator'
+import { withRouter } from 'react-router-dom'
 
 class Welcome extends Component {
 
@@ -17,14 +19,16 @@ class Welcome extends Component {
   }
 
   submitClick = event => {
-  event.preventDefault()
-  this.props.loginAction(this.state)
+    event.preventDefault()
+    this.props.loginAction(this.state)
   }
 
 
   render(){
-  return(
-    <div>
+    return(
+      <div>
+          {this.props.token ?  <Redirect to='/main' />  : null }
+
          <h2>Login</h2>
          <form>
             <p>{this.props.errors ? this.props.errors : null}</p>
@@ -34,19 +38,22 @@ class Welcome extends Component {
             <label>Password: </label>
             <input onChange={this.onChange} autoComplete="current-password" name="password" type="password"/>
             <br />
-            <button onClick={this.submitClick}> Login</button>
+            <button onClick={this.submitClick}>Login</button>
           </form>
+
         </div>
+
   )
   }
 
   }
 
   const mapStateToProps = state => {
-  return {
-    errors: state.errors
-  }
+    return {
+      token: state.token,
+      errors: state.errors
+    }
   }
 
 
-export default connect(mapStateToProps, {loginAction}) (Welcome)
+export default connect(mapStateToProps, {loginAction})(Welcome)

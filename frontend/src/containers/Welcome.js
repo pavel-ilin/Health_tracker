@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
-
+import {Redirect} from 'react-router-dom'
 class Welcome extends Component {
 
 state = {
@@ -15,8 +15,9 @@ onClick = event => {
 }
 
 render(){
+  console.log(this.state.signUpClick, "hello world")
   return(
-    <div>
+    <>
          {this.state.signUpClick
 
            ?
@@ -27,19 +28,20 @@ render(){
           </div>
 
           :
+          <Redirect to='/login' />
 
-          <div>
-          <Login />
-          <button onClick={this.onClick}>Signup</button>
-          </div>
         }
 
 
-    </div>
+    </>
   )
 }
 
 }
 
+// <div>
+// <Login />
+// <button onClick={this.onClick}>Signup</button>
+// </div>
 
 export default Welcome

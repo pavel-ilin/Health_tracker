@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :messages
   resources :location_ratings
   resources :my_locations
-  resources :users
+  resources :users, only: [:index, :create, :show, :update]
 
 
   resources :login, only: [:create]

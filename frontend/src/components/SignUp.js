@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-// import { connect } from 'react-redux'
-// import { signUptAction } from '../actionCreator'
+import { connect } from 'react-redux'
+import { signUpAction } from '../actionCreator'
+import { Link } from 'react-router-dom'
 
 
 class SignUp extends Component {
@@ -21,9 +22,8 @@ class SignUp extends Component {
     }
 
     submitClick = event => {
-      console.log(this.state)
       event.preventDefault()
-      // this.props.loginAction(this.state)
+      this.props.signUpAction(this.state)
     }
 
 
@@ -48,13 +48,17 @@ class SignUp extends Component {
               <label>Zipcode: </label>
               <input onChange={this.onChange} autoComplete="zipcode" name="zipcode" type="number"/>
               <br />
-              <button onClick={this.submitClick}>Signup</button>
+              <button onClick={this.submitClick}><Link to='/welcome'>Signup</Link></button>
             </form>
           </div>
     )
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    errors: state.errors
+  }
+}
 
-// export default connect(undefined, {signUptAction}) (SignUp)
-export default SignUp
+export default connect(mapStateToProps, {signUpAction}) (SignUp)

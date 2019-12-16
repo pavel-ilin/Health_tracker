@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
-export default class LipidPanel extends Component {
+export default class VitaminePanel extends Component {
 
   render(){
     return(
       <div>
-        Lipid Panel
+        Metabolic Panel
       </div>
     )
   }

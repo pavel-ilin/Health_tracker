@@ -12,9 +12,13 @@ export function loginAction (userData) {
     .then(r => r.json())
     .then(resp => {
 
-      localStorage.setItem('token', resp.token)
-      localStorage.setItem('userId', resp.user_id)
-
+      if (resp.errors){
+        localStorage.clear()
+      }
+      else {
+        localStorage.token = resp.token
+        localStorage.userId = resp.user_id
+      }
       dispatch({
         type: "LOGIN",
         user: {
@@ -30,7 +34,6 @@ export function loginAction (userData) {
 
 export function logoutAction (event) {
   localStorage.clear();
-  console.log(localStorage)
   return (dispatch) => dispatch(
     {
       type: "LOGOUT",
@@ -43,9 +46,58 @@ export function logoutAction (event) {
   )
 }
 
+export function signUpAction (userData) {
+  return (dispatch) => fetch(`http://localhost:3000/users`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      user:
+      { username: userData.username,
+      password: userData.password,
+      name: userData.name,
+      email: userData.email,
+      zipcode: userData.zipcode}
+    })
+  })
+  .then(r => r.json())
+  .then(resp => {
+    dispatch({
+      type: "SIGNUP",
+      user: {
+        username: resp.username,
+        name: resp.name,
+        email: resp.email,
+        zipcode: resp.zipcode
+      }
+    })
+  })
+}
+
+export function setUserData (userData) {
+  return (dispatch) => dispatch(
+    {
+      type: "SET_USER_DATA",
+      user: {
+        userId: userData.id,
+        username: userData.username,
+        name: userData.name,
+        email: userData.email,
+        zipcode: userData.zipcode,
+        metabolic_panels: userData.metabolic_panels,
+        vitamine_panels: userData.vitamine_panels,
+        cholesterols: userData.cholesterols,
+        weights: userData.weights,
+        blood_pressures: userData.blood_pressures
+      }
+    }
+  )
+}
+
 const actionCreator = {
   loginAction,
-  logoutAction
+  logoutAction,
+  signUpAction,
+  setUserData
 }
 
 export default actionCreator
