@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { loginAction } from '../actionCreator'
 import { withRouter } from 'react-router-dom'
 
-class Login extends Component {
+class Welcome extends Component {
 
   state = {
         username: "",
@@ -27,7 +27,7 @@ class Login extends Component {
   render(){
     return(
       <div>
-          {this.props.token ?  <Redirect push to='/main' />  : null }
+          {this.props.token ?  <Redirect to='/main' />  : null }
 
          <h2>Login</h2>
          <form>
@@ -56,4 +56,4 @@ class Login extends Component {
   }
 
 
-  export default withRouter(connect(mapStateToProps, {loginAction}) (Login))
+export default connect(mapStateToProps, {loginAction})(Welcome)

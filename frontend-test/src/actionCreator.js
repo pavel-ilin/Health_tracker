@@ -73,34 +73,24 @@ export function signUpAction (userData) {
   })
 }
 
-
-
-
-export function setUserData () {
-  return (dispatch) => fetch(`http://localhost:3000/users/${localStorage.userId}`)
-  .then(r => r.json())
-  .then(resp => {
-        dispatch(
-          {
+export function setUserData (userData) {
+  return (dispatch) => dispatch(
+    {
       type: "SET_USER_DATA",
       user: {
-        userId: resp.id,
-        username: resp.username,
-        name: resp.name,
-        email: resp.email,
-        zipcode: resp.zipcode,
-        metabolic_panels: resp.metabolic_panels,
-        vitamine_panels: resp.vitamine_panels,
-        cholesterols: resp.cholesterols,
-        weights: resp.weights,
-        blood_pressures: resp.blood_pressures
+        userId: userData.id,
+        username: userData.username,
+        name: userData.name,
+        email: userData.email,
+        zipcode: userData.zipcode,
+        metabolic_panels: userData.metabolic_panels,
+        vitamine_panels: userData.vitamine_panels,
+        cholesterols: userData.cholesterols,
+        weights: userData.weights,
+        blood_pressures: userData.blood_pressures
       }
     }
   )
-  })
-
-
-
 }
 
 const actionCreator = {

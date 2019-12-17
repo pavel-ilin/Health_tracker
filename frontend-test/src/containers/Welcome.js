@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 import {Redirect} from 'react-router-dom'
-
-
 class Welcome extends Component {
 
 state = {
@@ -17,6 +15,7 @@ onClick = event => {
 }
 
 render(){
+  console.log(this.state.signUpClick, "hello world")
   return(
     <>
          {this.state.signUpClick
@@ -25,16 +24,11 @@ render(){
 
           <div>
           <SignUp />
-          <button onClick={this.onClick}>Sign-in</button>
+          <button onClick={this.onClick}>Login</button>
           </div>
 
           :
-
-          <div>
-          <Login />
-          <button onClick={this.onClick}>SignUp</button>
-          </div>
-
+          <Redirect to='/login' />
 
         }
 
@@ -45,6 +39,9 @@ render(){
 
 }
 
-
+// <div>
+// <Login />
+// <button onClick={this.onClick}>Signup</button>
+// </div>
 
 export default Welcome
