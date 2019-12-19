@@ -11,7 +11,6 @@ export function loginAction (userData) {
     })
     .then(r => r.json())
     .then(resp => {
-
       if (resp.errors){
         localStorage.clear()
       }
@@ -80,8 +79,7 @@ export function setUserData () {
   return (dispatch) => fetch(`http://localhost:3000/users/${localStorage.userId}`)
   .then(r => r.json())
   .then(resp => {
-        dispatch(
-          {
+        dispatch({
       type: "SET_USER_DATA",
       user: {
         userId: resp.id,
@@ -93,21 +91,66 @@ export function setUserData () {
         vitamine_panels: resp.vitamine_panels,
         cholesterols: resp.cholesterols,
         weights: resp.weights,
-        blood_pressures: resp.blood_pressures
+        blood_pressures: resp.blood_pressures.reverse(),
+        userDataLoadingComplete: true
       }
     }
   )
   })
+}
+
+export function bloodPressureTestSubmit (testData) {
+
+  return (dispatch) => fetch('http://localhost:3000/blood_pressures', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      blood_pressure: {
+        systolic: testData.systolic,
+        diastolic: testData.diastolic,
+        puls: testData.puls,
+        stress_level: testData.stress_level,
+        user_id: testData.userId
+      }
+  })
+  })
+  .then(r => r.json())
+  .then(resp => {
+    console.log(resp)
+      dispatch({
+      type: "BLOOD_PRESSURE_TEST_SUBMIT",
+      blood_pressures: [{
+        id: resp.id,
+        systolic: resp.systolic,
+        diastolic: resp.diastolic,
+        puls: resp.puls,
+        stress_level: resp.stress_level
+      }]
+    })
+  })
+}
 
 
+export function fetchApiAction (zipcode) {
+  console.log(zipcode)
+
+  return (dispatch) => fetch(`https://data.cityofnewyork.us/resource/8eux-rfe8.json?input_1_zipcode=${zipcode}`)
+    .then(r => r.json())
+    .then(resp => {
+      console.log(resp)
+    })
 
 }
+
+
 
 const actionCreator = {
   loginAction,
   logoutAction,
   signUpAction,
-  setUserData
+  setUserData,
+  bloodPressureTestSubmit,
+  fetchApiAction
 }
 
 export default actionCreator

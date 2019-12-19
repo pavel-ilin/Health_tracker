@@ -35,7 +35,7 @@ class Profile extends Component {
               <input onChange={this.onChange} autoComplete="username" name="username" type="text" />
               <br />
               <label>Password: </label>
-              <input onChange={this.onChange} autoComplete="current-password" name="password" type="password"/>
+              <input onChange={this.onChange} autoComplete="password" name="password" type="password"/>
               <br />
               <label>Name: </label>
               <input onChange={this.onChange} autoComplete="name" name="name" type="text"/>

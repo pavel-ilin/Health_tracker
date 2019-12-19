@@ -1,19 +1,21 @@
 const initialState = {
   token: null,
   userId: null,
-  errors: null,
+  errors: [],
   username: null,
   name: null,
   email: null,
   zipcode: null,
-  metabolic_panels: null,
-  vitamine_panels: null,
-  cholesterols: null,
-  weights: null,
-  blood_pressures: null
+  metabolic_panels: [],
+  vitamine_panels: [],
+  cholesterols: [],
+  weights: [],
+  blood_pressures: [],
+  userDataLoadingComplete: false
 }
 
 const reducer = (oldState = initialState, action) => {
+  // console.log(action)
   switch (action.type) {
     case "LOGIN":
       return {
@@ -50,7 +52,13 @@ const reducer = (oldState = initialState, action) => {
       vitamine_panels: action.user.vitamine_panels,
       cholesterols: action.user.cholesterols,
       weights: action.user.weights,
-      blood_pressures: action.user.blood_pressures
+      blood_pressures: action.user.blood_pressures,
+      userDataLoadingComplete: action.user.userDataLoadingComplete
+    }
+    case 'BLOOD_PRESSURE_TEST_SUBMIT':
+    return {
+      ...oldState,
+      blood_pressures: [...action.blood_pressures, ...oldState.blood_pressures]
     }
     default:
       return oldState // what's old is new again

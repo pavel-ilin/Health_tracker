@@ -7,20 +7,18 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    render json: user, include: '**'
+    render json: user
   end
 
 
   def create
-    byebug
     user = User.create(user_params)
     if user.valid?
       render json: user
     else
-      render json: user_params
-      # render json: {
-      #   errors: 'This username is already taken!'
-      # }
+      render json: {
+        errors: 'This username is already taken!'
+      }
 
     end
   end

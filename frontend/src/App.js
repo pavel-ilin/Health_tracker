@@ -26,40 +26,48 @@ import { setUserData } from './actionCreator'
 
 class App extends Component {
 
-  componentDidMount(){
-      if (localStorage.token){
-        this.props.setUserData()
-      }
+
+  userData () {
+    if (!this.props.userDataLoadingComplete) {
+      this.props.setUserData()
+    }
   }
 
 
   render(){
-    console.log(localStorage.token)
-
+    this.userData ()
     return(
+
       <div className='App'>
+
           {localStorage.token ?  null : <Redirect push to='/welcome' /> }
           {!localStorage.token ?  null : <Header /> }
-          {!localStorage.token ?  null :<h2>Welcome dear {this.props.userProfile.name}</h2> }
+          {!this.props.userDataLoadingComplete ? <h1>loading...</h1>  :
 
-        <Switch>
-          <Route path="/main"><Main /></Route>
-          <Route path="/login"><Login /></Route>
-          <Route path="/welcome"><Welcome /></Route>
-          <Route exact path='/'><Redirect to='/welcome' /></Route>
+            <div>
+            {!localStorage.token ?  null :<h2>Welcome dear {this.props.userProfile.name}</h2> }
 
-          <Route path="/profile"><Profile userProfile={this.props.userProfile}/></Route>
+            <Switch>
+              <Route path="/main"><Main /></Route>
+              <Route path="/login"><Login /></Route>
+              <Route path="/welcome"><Welcome /></Route>
+              <Route exact path='/'><Redirect to='/welcome' /></Route>
 
-          <Route path="/bloood-pressure"><BloodPressure bloodPressure={this.props.bloodPressure}/></Route>
-          <Route path="/cholesterol"><Cholesterol cholesterols={this.props.cholesterols}/></Route>
-          <Route path="/metabolic-panel"><MetabolicPanel metabolic_panels={this.props.metabolicPanels}/></Route>
-          <Route path="/vitamine-panel"><VitaminePanel vitamine_panels={this.props.vitaminePanels}/></Route>
-          <Route path="/weight"><Weight weights={this.props.weights}/></Route>
+              <Route path="/profile"><Profile userProfile={this.props.userProfile}/></Route>
 
-          <Route path="/insurance"><HealthInsurance zipcode={this.props.zipcode}/></Route>
-          <Route path="/flue-shot"><FlueShot zipcode={this.props.zipcode}/></Route>
-          <Route path="/blood-presure-test"><BloodPressureTest zipcode={this.props.zipcode}/></Route>
-        </Switch>
+              <Route path="/bloood-pressure"><BloodPressure /></Route>
+              <Route path="/cholesterol"><Cholesterol cholesterols={this.props.cholesterols}/></Route>
+              <Route path="/metabolic-panel"><MetabolicPanel metabolic_panels={this.props.metabolicPanels}/></Route>
+              <Route path="/vitamine-panel"><VitaminePanel vitamine_panels={this.props.vitaminePanels}/></Route>
+              <Route path="/weight"><Weight weights={this.props.weights}/></Route>
+
+              <Route path="/insurance"><HealthInsurance zipcode={this.props.zipcode}/></Route>
+              <Route path="/flue-shot"><FlueShot zipcode={this.props.zipcode}/></Route>
+              <Route path="/blood-presure-test"><BloodPressureTest zipcode={this.props.zipcode}/></Route>
+            </Switch>
+            </div>
+          }
+
       </div>
     )
   }
@@ -69,19 +77,14 @@ const mapStateToProps = state => {
   return {
     token: state.token,
     userId: state.userId,
+    userDataLoadingComplete: state.userDataLoadingComplete,
     userProfile: {
       userId: state.userId,
       username: state.username,
       name: state.name,
       email: state.email,
       zipcode: state.zipcode
-    },
-    bloodPressure: state.blood_pressures,
-    cholesterols: state.cholesterols,
-    metabolicPanels: state.metabolic_panels,
-    vitaminePanels: state.vitamine_panels,
-    weights: state.weights,
-    zipcode: state.zipcode
+    }
   }
 }
 
