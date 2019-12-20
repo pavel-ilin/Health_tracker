@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import '../index.css';
 
 import { bloodPressureTestSubmit } from '../actionCreator'
 import BloodPressureResult from './BloodPressureResult'
-import { renderDiagram }  from './renderDiagram'
+import RenderDiagram from './RenderDiagram'
 
 class BloodPressure extends Component {
 
@@ -44,46 +45,50 @@ class BloodPressure extends Component {
 
   listTests () {
     return this.props.bloodPressures.map((result) => {
-      return <BloodPressureResult result={result}/>
+      return <BloodPressureResult key={result.id} result={result}/>
     })
   }
 
 
   render(){
-    console.log(this.props.bloodPressures)
 
     return(
-      <div>
-      <Link to='/main'>Back to main page</Link>
-        Blood pressure
+      <>
+        <div>
+        <ul className='results_inline'>
+          <li><Link to='/main'>Back to main page</Link></li>
+          <p>Blood pressure</p>
+        </ul>
+          <div>
+          <form>
+             <p>{this.props.errors ? this.props.errors : null}</p>
+             <label>Systolic: </label>
+             <input onChange={this.onChange} autoComplete="systolic" name="systolic" type="number"/>
+             <br />
+             <label>Diastolic: </label>
+             <input onChange={this.onChange} autoComplete="diastolic" name="diastolic" type="number"/>
+             <br />
+             <label>Puls: </label>
+             <input onChange={this.onChange} autoComplete="puls" name="puls" type="number"/>
+             <br />
+             <label>Stress level: </label>
+             <input onChange={this.onChange} autoComplete="stress_level" name="stress_level" type="number"/>
+             <br />
+             <button onClick={this.submitClick}>Submit</button>
+           </form>
 
-        <div>
-        <form>
-           <p>{this.props.errors ? this.props.errors : null}</p>
-           <label>Systolic: </label>
-           <input onChange={this.onChange} autoComplete="systolic" name="systolic" type="number"/>
-           <br />
-           <label>Diastolic: </label>
-           <input onChange={this.onChange} autoComplete="diastolic" name="diastolic" type="number"/>
-           <br />
-           <label>Puls: </label>
-           <input onChange={this.onChange} autoComplete="puls" name="puls" type="number"/>
-           <br />
-           <label>Stress level: </label>
-           <input onChange={this.onChange} autoComplete="stress_level" name="stress_level" type="number"/>
-           <br />
-           <button onClick={this.submitClick}>Submit</button>
-         </form>
+          </div>
+          <div>
+            Diagram
+            <RenderDiagram />
+          </div>
+          <div>
+            {this.listTests()}
+          </div>
+        </div>
 
-        </div>
-        <div>
-          Diagram
-          {renderDiagram(this.props.bloodPressures)}
-        </div>
-        <div>
-          {this.listTests()}
-        </div>
-      </div>
+      </>
+
     )
   }
 }
@@ -91,9 +96,10 @@ class BloodPressure extends Component {
 
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
     userId: state.userId,
-    bloodPressures: state.blood_pressures
+    bloodPressures: state.blood_pressures,
   }
 }
 

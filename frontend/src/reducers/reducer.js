@@ -22,14 +22,25 @@ const reducer = (oldState = initialState, action) => {
       ...oldState,
         token: action.user.token,
         userId: action.user.userId,
-        errors: action.user.errors
+        errors: action.user.errors,
+
       }
     case 'LOGOUT':
     return {
       ...oldState,
         token: null,
         userId: null,
-        errors: null
+        errors: [],
+        username: null,
+        name: null,
+        email: null,
+        zipcode: null,
+        metabolic_panels: [],
+        vitamine_panels: [],
+        cholesterols: [],
+        weights: [],
+        blood_pressures: [],
+        userDataLoadingComplete: false
       }
     case 'SIGNUP':
     return {

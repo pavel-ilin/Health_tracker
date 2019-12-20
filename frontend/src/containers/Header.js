@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
-import { Route, Switch, Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
+import { setUserData } from '../actionCreator'
 import Logout from '../components/Logout'
 
 class Header extends Component {
 
+  userData () {
+    if (!this.props.userDataLoadingComplete) {
+      this.props.setUserData()
+    }
+  }
+
   render(){
+    this.userData ()
     return(
       <div className='header'>
         <Logout />
@@ -15,4 +25,10 @@ class Header extends Component {
   }
 }
 
-export default Header
+const mapStateToProps = state => {
+  return {
+    userDataLoadingComplete: state.userDataLoadingComplete
+    }
+}
+
+export default withRouter(connect(mapStateToProps, {setUserData}) (Header))

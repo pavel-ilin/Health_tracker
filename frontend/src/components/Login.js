@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loginAction } from '../actionCreator'
 import { withRouter } from 'react-router-dom'

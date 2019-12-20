@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import '../index.css';
 
 
 class Profile extends Component {
@@ -28,6 +30,9 @@ class Profile extends Component {
     return(
 
       <div>
+            <ul className='results_inline'>
+              <li><Link to='/main'>Back to main page</Link></li>
+            </ul>
            <h2>Edit your profile</h2>
            <form>
               <p>{this.props.errors ? this.props.errors : null}</p>
@@ -54,5 +59,15 @@ class Profile extends Component {
 }
 
 
-export default Profile
+const mapStateToProps = state => {
+  return {
+    userId: state.userId,
+    username: state.username,
+    name: state.name,
+    email: state.email,
+    zipcode: state.zipcode
+  }
+}
+
+export default withRouter(connect(mapStateToProps) (Profile))
 

@@ -1,19 +1,25 @@
 import React, { Component } from 'react'
-import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries, VerticalBarSeries, MarkSeries, VerticalGridLines, ChartLabel, DiscreteColorLegend, GradientDefs } from 'react-vis';
+import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries, VerticalGridLines, DiscreteColorLegend } from 'react-vis';
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
+let dataSystolic = [];
+let dataDiastolic = [];
+let dataPuls = [];
+let dataStress = [];
 
-export function renderDiagram (testsData) {
+class RenderDiagram extends Component {
 
-  console.log(testsData)
-  let  iterateObject = null
+ mapTestResulsts () {
+   let dataSystolic = [];
+   let dataDiastolic = [];
+   let dataPuls = [];
+   let dataStress = [];
 
-  let dataSystolic = [];
-  let dataDiastolic = [];
-  let dataPuls = [];
-  let dataStress = [];
+  let  iterateObject = {}
 
-  if (testsData) {
-    testsData.map(test => {
+  if (this.props.bloodPressures) {
+    this.props.bloodPressures.map((test) => {
       iterateObject = {x: test.id , y: test.systolic}
       dataSystolic = [...dataSystolic, iterateObject]
 
@@ -28,7 +34,18 @@ export function renderDiagram (testsData) {
     })
   }
 
+   let combinedArray = {
+    dataSystolic: dataSystolic,
+    dataDiastolic: dataDiastolic,
+    dataPuls: dataPuls,
+    dataStress: dataStress,
+  }
 
+  return combinedArray
+}
+
+
+render(){
 
   const bloodPressureItems = [
     {title: 'Systolic', color: 'red', strokeWidth: 6},
@@ -37,7 +54,11 @@ export function renderDiagram (testsData) {
     {title: 'Stress level', color: 'black', strokeWidth: 6}
   ]
 
+
+let combinedArray = this.mapTestResulsts ()
+
 return  (
+    <>
         <XYPlot
           width={500}
           height={500}>
@@ -47,31 +68,44 @@ return  (
           <LineSeries
             title="Systolic"
             style={{stroke: 'red', strokeWidth: 3}}
-            data={dataSystolic}/>
+            data={combinedArray.dataSystolic}/>
           <XAxis title="Time"/>
           <YAxis />
 
           <LineSeries
               title="Diastolic"
               style={{stroke: 'blue', strokeWidth: 3}}
-              data={dataDiastolic}/>
+              data={combinedArray.dataDiastolic}/>
           <YAxis />
 
           <LineSeries
               title="Puls"
               style={{stroke: 'green', strokeWidth: 3}}
-              data={dataPuls}/>
+              data={combinedArray.dataPuls}/>
           <YAxis />
 
           <LineSeries
               title="Stress level"
               style={{stroke: 'black', strokeWidth: 3}}
-              data={dataStress}/>
+              data={combinedArray.dataStress}/>
           <YAxis />
 
 
           <DiscreteColorLegend orientation="horizontal" width={300} items={bloodPressureItems} />
 
         </XYPlot>
+        </>
   )
+  }
 }
+
+
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    userId: state.userId,
+    bloodPressures: state.blood_pressures
+  }
+}
+
+export default withRouter(connect(mapStateToProps) (RenderDiagram))

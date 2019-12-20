@@ -39,7 +39,17 @@ export function logoutAction (event) {
       user: {
         token: null,
         userId: null,
-        errors: null
+        errors: [],
+        username: null,
+        name: null,
+        email: null,
+        zipcode: null,
+        metabolic_panels: [],
+        vitamine_panels: [],
+        cholesterols: [],
+        weights: [],
+        blood_pressures: [],
+        userDataLoadingComplete: false
       }
     }
   )
@@ -79,10 +89,10 @@ export function setUserData () {
   return (dispatch) => fetch(`http://localhost:3000/users/${localStorage.userId}`)
   .then(r => r.json())
   .then(resp => {
+        let reversedArray = resp.blood_pressures.reverse()
         dispatch({
       type: "SET_USER_DATA",
       user: {
-        userId: resp.id,
         username: resp.username,
         name: resp.name,
         email: resp.email,
@@ -91,7 +101,7 @@ export function setUserData () {
         vitamine_panels: resp.vitamine_panels,
         cholesterols: resp.cholesterols,
         weights: resp.weights,
-        blood_pressures: resp.blood_pressures.reverse(),
+        blood_pressures: reversedArray,
         userDataLoadingComplete: true
       }
     }
@@ -154,5 +164,3 @@ const actionCreator = {
 }
 
 export default actionCreator
-
-

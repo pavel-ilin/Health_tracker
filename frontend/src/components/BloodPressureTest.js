@@ -1,38 +1,33 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+import MapContainer from '../containers/MapContainer'
 
 import { fetchApiAction } from '../actionCreator'
 
 
 class BloodPressureTest extends Component {
 
+  fetchApi () {
+      this.props.fetchApiAction(this.props.zipcode)
+  }
 
-    fetchApi () {
-        this.props.fetchApiAction(this.props.zipcode)
-    }
 
   render(){
+
     return(
       <div>
-        Blood Pressure Test
-        <div className="emdeb-responsive">
-              <iframe src={`https://www.google.com/maps/embed/v1/place?key=APIkey
-    &q=Space+Needle,Seattle+WA`}></iframe>
-        </div>
-
+        <p><Link to='/main'>Back to main page</Link></p>
+        <MapContainer />
       </div>
     )
   }
 }
 
-
-
 const mapStateToProps = state => {
   return {
       zipcode: state.zipcode
-
     }
   }
 
-export default withRouter(connect(mapStateToProps, { fetchApiAction }) (BloodPressureTest))
+export default withRouter(connect(mapStateToProps, { fetchApiAction } ) (BloodPressureTest))

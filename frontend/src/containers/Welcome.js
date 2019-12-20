@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
-import {Redirect} from 'react-router-dom'
 
 
 class Welcome extends Component {
@@ -35,9 +34,7 @@ render(){
           <button onClick={this.onClick}>SignUp</button>
           </div>
 
-
         }
-
 
     </>
   )
