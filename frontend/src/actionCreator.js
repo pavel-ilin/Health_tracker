@@ -89,7 +89,11 @@ export function setUserData () {
   return (dispatch) => fetch(`http://localhost:3000/users/${localStorage.userId}`)
   .then(r => r.json())
   .then(resp => {
-        let reversedArray = resp.blood_pressures.reverse()
+        let reversedBloodPressure = resp.blood_pressures.reverse()
+        let reversedCholesterol = resp.cholesterols.reverse()
+        let reverseMetabolicPanel = resp.metabolic_panels.reverse()
+        let reverseVitaminePanel = resp.vitamine_panels.reverse()
+
         dispatch({
       type: "SET_USER_DATA",
       user: {
@@ -97,11 +101,11 @@ export function setUserData () {
         name: resp.name,
         email: resp.email,
         zipcode: resp.zipcode,
-        metabolic_panels: resp.metabolic_panels,
-        vitamine_panels: resp.vitamine_panels,
-        cholesterols: resp.cholesterols,
+        metabolic_panels: reverseMetabolicPanel,
+        vitamine_panels: reverseVitaminePanel,
+        cholesterols: reversedCholesterol,
         weights: resp.weights,
-        blood_pressures: reversedArray,
+        blood_pressures: reversedBloodPressure,
         userDataLoadingComplete: true
       }
     }
@@ -126,7 +130,7 @@ export function bloodPressureTestSubmit (testData) {
   })
   .then(r => r.json())
   .then(resp => {
-    console.log(resp)
+    // console.log(resp)
       dispatch({
       type: "BLOOD_PRESSURE_TEST_SUBMIT",
       blood_pressures: [{
@@ -142,14 +146,98 @@ export function bloodPressureTestSubmit (testData) {
 
 
 export function fetchApiAction (zipcode) {
-  console.log(zipcode)
-
   return (dispatch) => fetch(`https://data.cityofnewyork.us/resource/8eux-rfe8.json?input_1_zipcode=${zipcode}`)
     .then(r => r.json())
     .then(resp => {
-      console.log(resp)
+      dispatch({
+      type: "BLOOD_PRESSURE_MAP",
+      bloodPressureChecks: resp
     })
+    })
+}
 
+export function cholesterolTestSubmit(testData){
+  return (dispatch) => fetch('http://localhost:3000/cholesterols', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      cholesterol: {
+        ldl: testData.ldl,
+        hdl: testData.hdl,
+        triglycerides: testData.triglycerides,
+        total_cholesterol: testData.total_cholesterol,
+        user_id: testData.userId
+      }
+  })
+  })
+  .then(r => r.json())
+  .then(resp => {
+    dispatch({
+    type: "CHOLESTEROL_TEST_SUBMIT",
+    cholesterols: [{
+      id: resp.id,
+      hdl: resp.hdl,
+      triglycerides: resp.triglycerides,
+      total_cholesterol: resp.total_cholesterol,
+      stress_level: resp.stress_level
+    }]
+  })
+})
+}
+
+
+export function metabolicPanelTestSubmit(testData){
+  console.log(testData)
+  return (dispatch) => fetch('http://localhost:3000/metabolic_panels', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      metabolic_panel: {
+        sodium: testData.sodium,
+        glucose: testData.glucose,
+        calcium: testData.calcium,
+        user_id: testData.userId
+      }
+  })
+  })
+  .then(r => r.json())
+  .then(resp => {
+    dispatch({
+    type: "METABOLIC_PANEL_TEST_SUBMIT",
+    metabolic_panels: [{
+      sodium: resp.sodium,
+      glucose: resp.glucose,
+      calcium: resp.calcium
+    }]
+  })
+})
+}
+
+export function vitaminePanelTestSubmit(testData){
+  console.log(testData)
+  return (dispatch) => fetch('http://localhost:3000/vitamine_panels', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      vitamine_panel: {
+        d: testData.d,
+        b12: testData.b12,
+        a1: testData.a1,
+        user_id: testData.userId
+      }
+  })
+  })
+  .then(r => r.json())
+  .then(resp => {
+    dispatch({
+    type: "METABOLIC_PANEL_TEST_SUBMIT",
+    vitamine_panels: [{
+      d: resp.d,
+      b12: resp.b12,
+      a1: resp.a1
+    }]
+  })
+})
 }
 
 
@@ -160,7 +248,10 @@ const actionCreator = {
   signUpAction,
   setUserData,
   bloodPressureTestSubmit,
-  fetchApiAction
+  fetchApiAction,
+  cholesterolTestSubmit,
+  metabolicPanelTestSubmit,
+  vitaminePanelTestSubmit
 }
 
 export default actionCreator

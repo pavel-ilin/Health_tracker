@@ -7,6 +7,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f9f7f7;
+  color: #112d4e;
 }
 
 code {
@@ -19,4 +21,15 @@ code {
 ul.results_inline li {
   display:inline;
   margin: 10px 10px 10px 10px;
+}
+
+.header {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  display: inline-flex;
+  /* float: left; */
+  color: red;
 }

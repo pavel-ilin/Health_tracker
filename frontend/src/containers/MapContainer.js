@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import { connect } from 'react-redux'
 
 const mapStyles = {
   width: '70%',
@@ -9,38 +10,85 @@ const mapStyles = {
 
 class MapContainer extends Component {
 
-  onMarkerClick(props, marker, e) {
-    console.log(marker)
+  state = {
+    activeMarker: {},
+    selectedPlace: {},
+    showingInfoWindow: false,
+  }
+
+
+  onMarkerClick = (props, marker, e) => {
+      console.log(props)
+      console.log(marker)
+      this.setState({
+        selectedPlace: props,
+        activeMarker: marker,
+        showingInfoWindow: true
+      })
+    }
+
+      onMapClicked = (props) => {
+      if (this.state.showingInfoWindow) {
+        this.setState({
+          showingInfoWindow: false,
+          activeMarker: null
+        })
+      }
+    }
+
+
+  renderLocations () {
+    return this.props.bloodPressureChecks.map((location) => {
+      return <Marker
+      position={{lat: parseFloat(location.latitude2), lng: parseFloat(location.longitude2)}}
+      onClick={this.onMarkerClick}
+      label={location.input_1_facilityname}
+      >
+      </Marker>
+
+    })
   }
 
   render() {
 
     return (
-      <Map google={this.props.google}
-        style={mapStyles}
-        className={'map'}
-        zoom={14}>
+      <div className='container-fluid'>
+      {!this.props.bloodPressureChecks[1] ? <div>Lodaing...</div> :
 
-      <Marker
-        title={'The marker`s title will appear as a tooltip.'}
-        name={'SOMA'}
-        position={{lat: 37.778519, lng: -122.405640}} />
-      <Marker
-        name={'Dolores park'}
-        position={{lat: 37.759703, lng: -122.428093}} />
-      <Marker
-        onClick={this.onMarkerClick}
-        label={'hello'}
-        name={'Current location'}
-        position={{lat: 37.762391, lng: -122.439192}} />
-
-    </Map>
+        <Map google={this.props.google}
+          style={mapStyles}
+          className={'map'}
+          zoom={14}
+          onClick={this.onMapClicked}
+          initialCenter={{
+              lat: parseFloat(this.props.bloodPressureChecks[1].latitude2),
+              lng: parseFloat(this.props.bloodPressureChecks[1].longitude2)
+          }}>
+          {this.renderLocations()}
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}>
+              <div>
+                <h2>{this.state.selectedPlace.label}</h2>
+                <p>{this.state.selectedPlace.label}</p>
+              </div>
+          </InfoWindow>
+      </Map>
+      }
+    </div>
     );
   }
 }
 
-export default GoogleApiWrapper({apiKey: ''})(MapContainer);
 
+const mapStateToProps = state => {
+  return {
+    token: state.token,
+    userId: state.userId,
+    bloodPressureChecks: state.bloodPressureChecks
+  }
+}
 
-
-
+const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_KEY
+const WrappedContainer = GoogleApiWrapper({apiKey: API_KEY})(MapContainer);
+export default connect(mapStateToProps)((WrappedContainer));

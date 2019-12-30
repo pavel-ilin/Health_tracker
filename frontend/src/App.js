@@ -13,7 +13,6 @@ import BloodPressure from './components/BloodPressure'
 import Cholesterol from './components/Cholesterol'
 import MetabolicPanel from './components/MetabolicPanel'
 import VitaminePanel from './components/VitaminePanel'
-import Weight from './components/Weight'
 
 import HealthInsurance from './components/HealthInsurance'
 import FlueShot from './components/FlueShot'
@@ -54,7 +53,6 @@ class App extends Component {
               <Route path="/cholesterol"><Cholesterol /></Route>
               <Route path="/metabolic-panel"><MetabolicPanel /></Route>
               <Route path="/vitamine-panel"><VitaminePanel /></Route>
-              <Route path="/weight"><Weight /></Route>
 
               <Route path="/insurance"><HealthInsurance /></Route>
               <Route path="/flue-shot"><FlueShot /></Route>

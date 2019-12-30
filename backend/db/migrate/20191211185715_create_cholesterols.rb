@@ -4,7 +4,7 @@ class CreateCholesterols < ActiveRecord::Migration[6.0]
       t.integer :ldl
       t.integer :hdl
       t.integer :triglycerides
-      t.string :total_cholesterol
+      t.integer :total_cholesterol
       t.belongs_to :user, null: false, foreign_key: true
 
       t.timestamps

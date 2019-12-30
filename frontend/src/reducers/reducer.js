@@ -11,6 +11,7 @@ const initialState = {
   cholesterols: [],
   weights: [],
   blood_pressures: [],
+  bloodPressureChecks: [],
   userDataLoadingComplete: false
 }
 
@@ -70,6 +71,26 @@ const reducer = (oldState = initialState, action) => {
     return {
       ...oldState,
       blood_pressures: [...action.blood_pressures, ...oldState.blood_pressures]
+    }
+    case 'BLOOD_PRESSURE_MAP':
+    return {
+      ...oldState,
+      bloodPressureChecks: action.bloodPressureChecks
+    }
+    case 'CHOLESTEROL_TEST_SUBMIT':
+    return {
+      ...oldState,
+      cholesterols: [...action.cholesterols, ...oldState.cholesterols]
+    }
+    case 'METABOLIC_PANEL_TEST_SUBMIT':
+    return {
+      ...oldState,
+      metabolic_panels: [...action.metabolic_panels, ...oldState.metabolic_panels]
+    }
+    case 'VITAMINE_PANEL_TEST_SUBMIT':
+    return {
+      ...oldState,
+      vitamine_panels: [...action.vitamine_panels, ...oldState.vitamine_panels]
     }
     default:
       return oldState // what's old is new again

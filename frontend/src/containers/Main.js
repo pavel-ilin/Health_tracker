@@ -6,31 +6,90 @@ import { withRouter } from 'react-router-dom'
 
 
 class Main extends Component {
-
   render(){
     return(
-      <div>
-      {!localStorage.token ?  null :<h2>Welcome dear {this.props.name}</h2> }
+      <div className='container-fluid'>
+      {!localStorage.token ?  null :
+
+        <div>
+        <h2 className='display-1'>Welcome dear {this.props.name}</h2>
+        <p className='lead'>How are we fiiling today?</p>
+        </div>
+      }
 
       {!this.props.userDataLoadingComplete ? <h1>loading...</h1>  :
           <div>
-        <div className='my_health'>
-          <ul className='results_inline'>
-            <li><Link to='/bloood-pressure'>Blood Pressure</Link></li>
-            <li><Link to='/cholesterol'>Cholesterol</Link></li>
-            <li><Link to='/metabolic-panel'>Metabolic Panel</Link></li>
-            <li><Link to='/vitamine-panel'>Vitamine Panel</Link></li>
-            <li><Link to='/weight'>Weight</Link></li>
+        <div>
+          <ul className='row'>
+            <div className='col'><Link to='/bloood-pressure'>Blood Pressure</Link></div>
+            <div className='col'><Link to='/cholesterol'>Cholesterol</Link></div>
+            <div className='col'><Link to='/metabolic-panel'>Metabolic Panel</Link></div>
+            <div className='col'><Link to='/vitamine-panel'>Vitamine Panel</Link></div>
           </ul>
         </div>
 
-        <div className='my_neighborhood'>
-          <ul className='results_inline'>
-            <li><Link to='/insurance'>Health insurance</Link></li>
-            <li><Link to='/flue-shot'>Flue Shots</Link></li>
-            <li><Link to='/blood-presure-test'>Check your blood pressure</Link></li>
+        <div>
+          <ul className='row'>
+            <div className='col'><Link to='/flue-shot'>Flue Shots</Link></div>
+            <div className='col'><Link to='/blood-presure-test'>Check your blood pressure</Link></div >
           </ul>
         </div>
+
+
+
+
+
+
+        <ul className='row'>
+        <div className="card" style={{width: '18rem'}}>
+          <div className="card-body">
+            <h5 className="card-title">Card title</h5>
+            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div className='col'><Link to='/bloood-pressure'>Blood Pressure</Link></div>
+          </div>
+        </div>
+        <div className="card" style={{width: '18rem'}}>
+          <div className="card-body">
+            <h5 className="card-title">Card title</h5>
+            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div className='col'><Link to='/bloood-pressure'>Blood Pressure</Link></div>
+          </div>
+        </div>
+        <div className="card" style={{width: '18rem'}}>
+          <div className="card-body">
+            <h5 className="card-title">Card title</h5>
+            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div className='col'><Link to='/bloood-pressure'>Blood Pressure</Link></div>
+          </div>
+        </div>
+        <div className="card" style={{width: '18rem'}}>
+          <div className="card-body">
+            <h5 className="card-title">Card title</h5>
+            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div className='col'><Link to='/bloood-pressure'>Blood Pressure</Link></div>
+          </div>
+        </div>
+        </ul>
+        
+
+        <ul className='row' style={{display: 'inline-flex'}}>
+        <div className="card" style={{width: '18rem'}}>
+          <div className="card-body">
+            <h5 className="card-title">Card title</h5>
+            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div className='col'><Link to='/bloood-pressure'>Blood Pressure</Link></div>
+          </div>
+        </div>
+        <div className="card" style={{width: '18rem'}}>
+          <div className="card-body">
+            <h5 className="card-title">Card title</h5>
+            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div className='col'><Link to='/bloood-pressure'>Blood Pressure</Link></div>
+          </div>
+        </div>
+        </ul>
+
+
       </div>
     }
     </div>

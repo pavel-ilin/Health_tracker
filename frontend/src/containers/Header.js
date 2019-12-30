@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import '../index.css';
 
 import { setUserData } from '../actionCreator'
 import Logout from '../components/Logout'
@@ -18,8 +19,8 @@ class Header extends Component {
     this.userData ()
     return(
       <div className='header'>
+        <button><Link to='/profile'>Profile</Link></button>
         <Logout />
-        <Link to='/profile'>Profile</Link>
       </div>
     )
   }

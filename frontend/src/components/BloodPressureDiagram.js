@@ -8,7 +8,7 @@ let dataDiastolic = [];
 let dataPuls = [];
 let dataStress = [];
 
-class RenderDiagram extends Component {
+class BloodPressureDiagram extends Component {
 
  mapTestResulsts () {
    let dataSystolic = [];
@@ -79,7 +79,7 @@ return  (
           <YAxis />
 
           <LineSeries
-              title="Puls"
+              title="Pulse"
               style={{stroke: 'green', strokeWidth: 3}}
               data={combinedArray.dataPuls}/>
           <YAxis />
@@ -108,4 +108,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default withRouter(connect(mapStateToProps) (RenderDiagram))
+export default withRouter(connect(mapStateToProps) (BloodPressureDiagram))

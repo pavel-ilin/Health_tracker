@@ -6,7 +6,7 @@ import '../index.css';
 
 import { bloodPressureTestSubmit } from '../actionCreator'
 import BloodPressureResult from './BloodPressureResult'
-import RenderDiagram from './RenderDiagram'
+import BloodPressureDiagram from './BloodPressureDiagram'
 
 class BloodPressure extends Component {
 
@@ -51,7 +51,6 @@ class BloodPressure extends Component {
 
 
   render(){
-
     return(
       <>
         <div>
@@ -68,7 +67,7 @@ class BloodPressure extends Component {
              <label>Diastolic: </label>
              <input onChange={this.onChange} autoComplete="diastolic" name="diastolic" type="number"/>
              <br />
-             <label>Puls: </label>
+             <label>Pulse: </label>
              <input onChange={this.onChange} autoComplete="puls" name="puls" type="number"/>
              <br />
              <label>Stress level: </label>
@@ -80,7 +79,7 @@ class BloodPressure extends Component {
           </div>
           <div>
             Diagram
-            <RenderDiagram />
+            <BloodPressureDiagram />
           </div>
           <div>
             {this.listTests()}

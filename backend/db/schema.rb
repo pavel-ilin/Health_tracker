@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2019_12_12_191011) do
     t.integer "ldl"
     t.integer "hdl"
     t.integer "triglycerides"
-    t.string "total_cholesterol"
+    t.integer "total_cholesterol"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
