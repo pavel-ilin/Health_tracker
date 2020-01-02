@@ -60,15 +60,12 @@ class Cholesterol extends Component {
 
       <ul className='results_inline'>
         <li><Link to='/main'>Back to main page</Link></li>
-        <p>Cholesterol</p>
+        <h2>Cholesterol</h2>
       </ul>
 
-
-        <div>
-          Form for new submition
-        </div>
-        <div>
-        <form>
+      <div className='row'>
+      <div className='col'>
+        <form className='input_form'>
            <p>{this.props.errors ? this.props.errors : null}</p>
            <label>LDL: </label>
            <input onChange={this.onChange} autoComplete="ldl" name="ldl" type="number"/>
@@ -85,11 +82,15 @@ class Cholesterol extends Component {
            <button onClick={this.submitClick}>Submit</button>
          </form>
         </div>
-        <div>
+
+
+
+        <div className='col'>
           <CholesterolDiagram />
         </div>
-        <div>
-          List of all tests
+      </div>
+
+        <div className='results_list'>
           {this.listTests ()}
         </div>
       </div>

@@ -10,7 +10,7 @@ class Logout extends Component {
   render(){
     return(
       <div>
-        <button onClick={this.props.logoutAction}><Link to='/welcome'>Logout</Link></button>
+        <button className='btn btn-danger' onClick={this.props.logoutAction}><Link style={{color: 'white'}} to='/welcome'>Logout</Link></button>
       </div>
     )
   }

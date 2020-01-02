@@ -50,6 +50,7 @@ render(){
 
 
 let combinedArray = this.mapTestResulsts ()
+console.log(combinedArray)
 
 return  (
     <>
@@ -88,6 +89,7 @@ return  (
 
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
     userId: state.userId,
     metabolic_panels: state.metabolic_panels

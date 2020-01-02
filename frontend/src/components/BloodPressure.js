@@ -56,10 +56,12 @@ class BloodPressure extends Component {
         <div>
         <ul className='results_inline'>
           <li><Link to='/main'>Back to main page</Link></li>
-          <p>Blood pressure</p>
+          <h2>Blood pressure</h2>
         </ul>
-          <div>
-          <form>
+
+          <div className='row'>
+          <div className='col'>
+          <form className='input_form'>
              <p>{this.props.errors ? this.props.errors : null}</p>
              <label>Systolic: </label>
              <input onChange={this.onChange} autoComplete="systolic" name="systolic" type="number"/>
@@ -75,15 +77,20 @@ class BloodPressure extends Component {
              <br />
              <button onClick={this.submitClick}>Submit</button>
            </form>
-
           </div>
-          <div>
+
+          <div className='col'>
             Diagram
             <BloodPressureDiagram />
           </div>
-          <div>
+
+          </div>
+
+
+          <div className='results_list'>
             {this.listTests()}
           </div>
+
         </div>
 
       </>
@@ -95,7 +102,6 @@ class BloodPressure extends Component {
 
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
     userId: state.userId,
     bloodPressures: state.blood_pressures,

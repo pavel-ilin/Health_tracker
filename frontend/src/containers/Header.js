@@ -19,8 +19,8 @@ class Header extends Component {
     this.userData ()
     return(
       <div className='header'>
-        <button><Link to='/profile'>Profile</Link></button>
         <Logout />
+        <button className='btn btn-info'><Link style={{color: 'aquamarine'}} to='/profile'>Profile</Link></button>
       </div>
     )
   }

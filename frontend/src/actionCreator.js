@@ -82,7 +82,32 @@ export function signUpAction (userData) {
   })
 }
 
-
+export function editUserAction (userData) {
+  return (dispatch) => fetch(`http://localhost:3000/users/${localStorage.userId}`, {
+    method: 'PATCH',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      user:
+      { username: userData.username,
+      password: userData.password,
+      name: userData.name,
+      email: userData.email,
+      zipcode: userData.zipcode}
+    })
+  })
+  .then(r => r.json())
+  .then(resp => {
+    dispatch({
+      type: "EDIT_USER_DATA",
+      user: {
+        username: resp.username,
+        name: resp.name,
+        email: resp.email,
+        zipcode: resp.zipcode
+      }
+    })
+  })
+}
 
 
 export function setUserData () {
@@ -113,6 +138,17 @@ export function setUserData () {
   })
 }
 
+export function fetchApiAction (zipcode) {
+  return (dispatch) => fetch(`https://data.cityofnewyork.us/resource/8eux-rfe8.json?input_1_zipcode=${zipcode}`)
+    .then(r => r.json())
+    .then(resp => {
+      dispatch({
+      type: "BLOOD_PRESSURE_MAP",
+      bloodPressureChecks: resp
+    })
+    })
+}
+
 export function bloodPressureTestSubmit (testData) {
 
   return (dispatch) => fetch('http://localhost:3000/blood_pressures', {
@@ -130,7 +166,6 @@ export function bloodPressureTestSubmit (testData) {
   })
   .then(r => r.json())
   .then(resp => {
-    // console.log(resp)
       dispatch({
       type: "BLOOD_PRESSURE_TEST_SUBMIT",
       blood_pressures: [{
@@ -142,18 +177,6 @@ export function bloodPressureTestSubmit (testData) {
       }]
     })
   })
-}
-
-
-export function fetchApiAction (zipcode) {
-  return (dispatch) => fetch(`https://data.cityofnewyork.us/resource/8eux-rfe8.json?input_1_zipcode=${zipcode}`)
-    .then(r => r.json())
-    .then(resp => {
-      dispatch({
-      type: "BLOOD_PRESSURE_MAP",
-      bloodPressureChecks: resp
-    })
-    })
 }
 
 export function cholesterolTestSubmit(testData){
@@ -187,7 +210,6 @@ export function cholesterolTestSubmit(testData){
 
 
 export function metabolicPanelTestSubmit(testData){
-  console.log(testData)
   return (dispatch) => fetch('http://localhost:3000/metabolic_panels', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
@@ -205,6 +227,7 @@ export function metabolicPanelTestSubmit(testData){
     dispatch({
     type: "METABOLIC_PANEL_TEST_SUBMIT",
     metabolic_panels: [{
+      id: resp.id,
       sodium: resp.sodium,
       glucose: resp.glucose,
       calcium: resp.calcium
@@ -214,7 +237,6 @@ export function metabolicPanelTestSubmit(testData){
 }
 
 export function vitaminePanelTestSubmit(testData){
-  console.log(testData)
   return (dispatch) => fetch('http://localhost:3000/vitamine_panels', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
@@ -230,8 +252,9 @@ export function vitaminePanelTestSubmit(testData){
   .then(r => r.json())
   .then(resp => {
     dispatch({
-    type: "METABOLIC_PANEL_TEST_SUBMIT",
+    type: "VITAMINE_PANEL_TEST_SUBMIT",
     vitamine_panels: [{
+      id: resp.id,
       d: resp.d,
       b12: resp.b12,
       a1: resp.a1

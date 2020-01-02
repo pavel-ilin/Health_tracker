@@ -30,7 +30,7 @@ class Login extends Component {
           {this.props.token ?  <Redirect push to='/main' />  : null }
 
          <h2>Login</h2>
-         <form>
+         <form className='input_form'> 
             <p>{this.props.errors ? this.props.errors : null}</p>
             <label>Username: </label>
             <input onChange={this.onChange} autoComplete="username" name="username" type="text"/>

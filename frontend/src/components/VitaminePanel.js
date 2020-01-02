@@ -55,11 +55,12 @@ class VitaminePanel extends Component {
       <div>
       <ul className='results_inline'>
         <li><Link to='/main'>Back to main page</Link></li>
+        <h2>Vitamine Panel</h2>
       </ul>
-        Vitamine Panel
 
-        <div>
-        <form>
+        <div className='row'>
+        <div className='col'>
+        <form className='input_form'>
            <p>{this.props.errors ? this.props.errors : null}</p>
            <label>D: </label>
            <input onChange={this.onChange} autoComplete="d" name="d" type="number"/>
@@ -73,13 +74,14 @@ class VitaminePanel extends Component {
            <button onClick={this.submitClick}>Submit</button>
          </form>
         </div>
-        <div>
+        <div className='col'>
           Diagram
           <VitaminePanelDiagram />
         </div>
-        <div>
-          List of all tests
-          {this.listTests()}
+        </div>
+
+        <div className='results_list'>
+          {this.listTests ()}
         </div>
       </div>
     )

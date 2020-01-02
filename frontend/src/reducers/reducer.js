@@ -50,6 +50,13 @@ const reducer = (oldState = initialState, action) => {
         userId: action.user.userId,
         errors: action.user.errors
     }
+    case 'EDIT_USER_DATA':
+    return {
+      ...oldState,
+        token: action.user.token,
+        userId: action.user.userId,
+        errors: action.user.errors
+    }
     case 'SET_USER_DATA':
     return {
       ...oldState,

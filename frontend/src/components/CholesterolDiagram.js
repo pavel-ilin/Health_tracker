@@ -56,7 +56,6 @@ render(){
 
 
 let combinedArray = this.mapTestResulsts ()
-  console.log(combinedArray)
 return  (
     <>
         <XYPlot

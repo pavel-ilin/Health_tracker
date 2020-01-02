@@ -31,7 +31,7 @@ class MapContainer extends Component {
       if (this.state.showingInfoWindow) {
         this.setState({
           showingInfoWindow: false,
-          activeMarker: null
+          activeMarker: {}
         })
       }
     }
@@ -39,13 +39,14 @@ class MapContainer extends Component {
 
   renderLocations () {
     return this.props.bloodPressureChecks.map((location) => {
+      // console.log(location)
       return <Marker
       position={{lat: parseFloat(location.latitude2), lng: parseFloat(location.longitude2)}}
       onClick={this.onMarkerClick}
-      label={location.input_1_facilityname}
-      >
-      </Marker>
-
+      address={location.input_1_address}
+      title={location.input_1_facilityname}
+      contacts={location.input_1_phone2}
+      />
     })
   }
 
@@ -53,7 +54,7 @@ class MapContainer extends Component {
 
     return (
       <div className='container-fluid'>
-      {!this.props.bloodPressureChecks[1] ? <div>Lodaing...</div> :
+      {!this.props.bloodPressureChecks[1] ? <h2 className='display-1'>Lodaing...</h2> :
 
         <Map google={this.props.google}
           style={mapStyles}
@@ -69,8 +70,9 @@ class MapContainer extends Component {
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}>
               <div>
-                <h2>{this.state.selectedPlace.label}</h2>
-                <p>{this.state.selectedPlace.label}</p>
+                <h2>{this.state.activeMarker.title}</h2>
+                <p>Address: {this.state.activeMarker.address}</p>
+                <p>Contacts: {this.state.activeMarker.contacts}</p>
               </div>
           </InfoWindow>
       </Map>

@@ -54,12 +54,14 @@ class MetabolicPanel extends Component {
       <div>
       <ul className='results_inline'>
         <li><Link to='/main'>Back to main page</Link></li>
+        <h2>Metabolic Panel</h2>
       </ul>
-      
-        Metabolic Panel
 
-        <div>
-        <form>
+
+        <div className='row'>
+        <div className='col'>
+
+        <form className='input_form'>
            <p>{this.props.errors ? this.props.errors : null}</p>
            <label>Sodium: </label>
            <input onChange={this.onChange} autoComplete="sodium" name="sodium" type="number"/>
@@ -73,13 +75,14 @@ class MetabolicPanel extends Component {
            <button onClick={this.submitClick}>Submit</button>
          </form>
         </div>
-        <div>
+        <div className='col'>
           Diagram
           <MetabolicPanelDiagram />
         </div>
-        <div>
-          List of all tests
-          {this.listTests()}
+        </div>
+
+        <div className='results_list'>
+          {this.listTests ()}
         </div>
       </div>
     )
