@@ -19,14 +19,17 @@ class UsersController < ApplicationController
       render json: {
         errors: 'This username is already taken!'
       }
-
     end
   end
 
   def update
     user = User.find(params[:id])
-    user.user_params
-    render json: user
+    if user_params[:password] == '' || user_params[:password] == nil
+      render json: {errors: "Password can't be blank"}
+    else
+      user.update(user_params)
+      render json: user
+    end
   end
 
   private

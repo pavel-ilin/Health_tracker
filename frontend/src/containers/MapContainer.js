@@ -3,8 +3,8 @@ import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { connect } from 'react-redux'
 
 const mapStyles = {
-  width: '70%',
-  height: '70%'
+  width: '60%',
+  height: '60%'
 };
 
 
@@ -18,8 +18,6 @@ class MapContainer extends Component {
 
 
   onMarkerClick = (props, marker, e) => {
-      console.log(props)
-      console.log(marker)
       this.setState({
         selectedPlace: props,
         activeMarker: marker,

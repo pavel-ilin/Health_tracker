@@ -97,15 +97,26 @@ export function editUserAction (userData) {
   })
   .then(r => r.json())
   .then(resp => {
-    dispatch({
-      type: "EDIT_USER_DATA",
-      user: {
-        username: resp.username,
-        name: resp.name,
-        email: resp.email,
-        zipcode: resp.zipcode
-      }
-    })
+    if (resp.errors) {
+      dispatch({
+        type: "EDIT_USER_DATA",
+        user: {
+          errors: resp.errors,
+        }
+      })
+    }
+    else {
+      dispatch({
+        type: "EDIT_USER_DATA",
+        user: {
+          username: resp.username,
+          name: resp.name,
+          email: resp.email,
+          zipcode: resp.zipcode,
+          userDataUpdateComplete: true
+        }
+      })
+    }
   })
 }
 
@@ -118,7 +129,6 @@ export function setUserData () {
         let reversedCholesterol = resp.cholesterols.reverse()
         let reverseMetabolicPanel = resp.metabolic_panels.reverse()
         let reverseVitaminePanel = resp.vitamine_panels.reverse()
-
         dispatch({
       type: "SET_USER_DATA",
       user: {
@@ -263,6 +273,13 @@ export function vitaminePanelTestSubmit(testData){
 })
 }
 
+export function resetUpdateState () {
+  return {
+    type: 'RESET_UPDATE',
+    userDataUpdateComplete: false
+  }
+}
+
 
 
 const actionCreator = {
@@ -274,7 +291,8 @@ const actionCreator = {
   fetchApiAction,
   cholesterolTestSubmit,
   metabolicPanelTestSubmit,
-  vitaminePanelTestSubmit
+  vitaminePanelTestSubmit,
+  resetUpdateState
 }
 
 export default actionCreator

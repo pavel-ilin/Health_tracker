@@ -12,7 +12,8 @@ const initialState = {
   weights: [],
   blood_pressures: [],
   bloodPressureChecks: [],
-  userDataLoadingComplete: false
+  userDataLoadingComplete: false,
+  userDataUpdateComplete: false
 }
 
 const reducer = (oldState = initialState, action) => {
@@ -23,8 +24,7 @@ const reducer = (oldState = initialState, action) => {
       ...oldState,
         token: action.user.token,
         userId: action.user.userId,
-        errors: action.user.errors,
-
+        errors: action.user.errors
       }
     case 'LOGOUT':
     return {
@@ -41,7 +41,8 @@ const reducer = (oldState = initialState, action) => {
         cholesterols: [],
         weights: [],
         blood_pressures: [],
-        userDataLoadingComplete: false
+        userDataLoadingComplete: false,
+        userDataUpdateComplete: false
       }
     case 'SIGNUP':
     return {
@@ -53,9 +54,12 @@ const reducer = (oldState = initialState, action) => {
     case 'EDIT_USER_DATA':
     return {
       ...oldState,
-        token: action.user.token,
-        userId: action.user.userId,
-        errors: action.user.errors
+        username: action.user.username,
+        name: action.user.name,
+        email: action.user.email,
+        zipcode: action.user.zipcode,
+        errors: action.user.errors,
+        userDataUpdateComplete: action.user.userDataUpdateComplete
     }
     case 'SET_USER_DATA':
     return {
@@ -72,7 +76,7 @@ const reducer = (oldState = initialState, action) => {
       cholesterols: action.user.cholesterols,
       weights: action.user.weights,
       blood_pressures: action.user.blood_pressures,
-      userDataLoadingComplete: action.user.userDataLoadingComplete
+      userDataLoadingComplete: action.user.userDataLoadingComplete,
     }
     case 'BLOOD_PRESSURE_TEST_SUBMIT':
     return {
@@ -98,6 +102,11 @@ const reducer = (oldState = initialState, action) => {
     return {
       ...oldState,
       vitamine_panels: [...action.vitamine_panels, ...oldState.vitamine_panels]
+    }
+    case 'RESET_UPDATE':
+    return {
+      ...oldState,
+      userDataUpdateComplete: action.userDataUpdateComplete
     }
     default:
       return oldState // what's old is new again

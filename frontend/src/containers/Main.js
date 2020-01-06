@@ -101,22 +101,3 @@ const mapStateToProps = state => {
 }
 
 export default withRouter(connect(mapStateToProps) (Main))
-
-
-//
-//
-//   <div>
-//     <ul className='row'>
-//       <div className='col'><Link to='/bloood-pressure'>Blood Pressure</Link></div>
-//       <div className='col'><Link to='/cholesterol'>Cholesterol</Link></div>
-//       <div className='col'><Link to='/metabolic-panel'>Metabolic Panel</Link></div>
-//       <div className='col'><Link to='/vitamine-panel'>Vitamine Panel</Link></div>
-//     </ul>
-//   </div>
-//
-//   <div>
-//     <ul className='row'>
-//       <div className='col'><Link to='/flue-shot'>Flue Shots</Link></div>
-//       <div className='col'><Link to='/blood-presure-test'>Check your blood pressure</Link></div >
-//     </ul>
-//   </div>
