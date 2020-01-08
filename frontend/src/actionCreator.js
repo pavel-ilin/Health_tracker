@@ -122,7 +122,11 @@ export function editUserAction (userData) {
 
 
 export function setUserData () {
-  return (dispatch) => fetch(`http://localhost:3000/users/${localStorage.userId}`)
+  return (dispatch) => fetch(`http://localhost:3000/users/${localStorage.userId}`, {
+    headers: {
+      "Authorization": localStorage.token
+    }
+  })
   .then(r => r.json())
   .then(resp => {
         let reversedBloodPressure = resp.blood_pressures.reverse()

@@ -6,8 +6,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    user = User.find(params[:id])
-    render json: user
+    user_id = params[:id]
+    if current_user_id == user_id.to_i
+      user = User.find(params[:id])
+      render json: user
+    else
+      render json: { go_away: true }, status: :unauthorized
+    end
   end
 
 
