@@ -61,7 +61,8 @@ class Profile extends Component {
       event.preventDefault()
       this.props.editUserAction(this.state)
       this.setState({
-        updateRender: false
+        updateRender: false,
+        password: ''
       })
     }
 
@@ -81,7 +82,7 @@ class Profile extends Component {
               <input onChange={this.onChange} autoComplete="username" name="username" type="text" value={this.state.username}/>
               <br />
               <label>Password: </label>
-              <input onChange={this.onChange} autoComplete="password" name="password" type="password" />
+              <input onChange={this.onChange} autoComplete="password" name="password" type="password" value={this.state.password}/>
               <br />
               <label>Name: </label>
               <input onChange={this.onChange} autoComplete="name" name="name" type="text" value={this.state.name}/>

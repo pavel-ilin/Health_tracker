@@ -85,7 +85,10 @@ export function signUpAction (userData) {
 export function editUserAction (userData) {
   return (dispatch) => fetch(`http://localhost:3000/users/${localStorage.userId}`, {
     method: 'PATCH',
-    headers: {'Content-Type': 'application/json'},
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.token
+  } ,
     body: JSON.stringify({
       user:
       { username: userData.username,

@@ -28,14 +28,20 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
-    if user_params[:password] == '' || user_params[:password] == nil
-      render json: {errors: "Password can't be blank"}
+    user_id = params[:id]
+    if current_user_id == user_id.to_i
+      user = User.find(params[:id])
+      if user_params[:password] == '' || user_params[:password] == nil
+        render json: {errors: "Password can't be blank"}
+      else
+        user.update(user_params)
+        render json: user
+      end
     else
-      user.update(user_params)
-      render json: user
+      render json: { go_away: true }, status: :unauthorized
     end
   end
+
 
   private
 

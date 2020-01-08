@@ -48,7 +48,7 @@ class SignUp extends Component {
               <label>Zipcode: </label>
               <input onChange={this.onChange} autoComplete="zipcode" name="zipcode" type="number"/>
               <br />
-              <button onClick={this.submitClick}><Link to='/welcome'>Signup</Link></button>
+              <button onClick={this.submitClick}><Link to='/'>Signup</Link></button>
             </form>
           </div>
     )
