@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 
-
 import Welcome from './containers/Welcome'
 import Main from './containers/Main'
 import Header from './containers/Header'
@@ -37,7 +36,6 @@ class App extends Component {
     return(
       <div className='App'>
 
-          {localStorage.token ?  null : <Redirect push to='/welcome' /> }
           {!localStorage.token ?  null : <Header /> }
             <div>
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import '../index.css';
+import '../assets/index.css';
 
 import CholesterolResult from './CholesterolResult'
 import { cholesterolTestSubmit } from '../actionCreator'
@@ -58,13 +58,13 @@ class Cholesterol extends Component {
     return(
       <div>
 
-      <ul className='results_inline'>
+      <div>
         <li><Link to='/main'>Back to main page</Link></li>
-        <h2>Cholesterol</h2>
-      </ul>
+        <li><h2>Cholesterol</h2></li>
+      </div>
 
-      <div className='row'>
-      <div className='col'>
+      <div className='grid2'>
+      <div className='g1'>
         <form className='input_form'>
            <p>{this.props.errors ? this.props.errors : null}</p>
            <label>LDL: </label>
@@ -83,9 +83,7 @@ class Cholesterol extends Component {
          </form>
         </div>
 
-
-
-        <div className='col'>
+        <div className='g1'>
           <CholesterolDiagram />
         </div>
       </div>

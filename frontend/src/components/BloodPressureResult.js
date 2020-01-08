@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../index.css';
+import '../assets/index.css';
 
 
 class BloodPressureResult extends Component {
@@ -8,10 +8,10 @@ class BloodPressureResult extends Component {
     return(
       <div>
         <ul className='results_inline'>
-          <li>Systolic: {this.props.result.systolic}</li>
-          <li>Diastolic: {this.props.result.diastolic}</li>
-          <li>Pulse: {this.props.result.puls}</li>
-          <li>StressLevel: {this.props.result.stress_level}</li>
+          <li className='g1'>Systolic: {this.props.result.systolic}</li>
+          <li className='g1'>Diastolic: {this.props.result.diastolic}</li>
+          <li className='g1'>Pulse: {this.props.result.puls}</li>
+          <li className='g1'>StressLevel: {this.props.result.stress_level}</li>
         </ul>
       </div>
     )

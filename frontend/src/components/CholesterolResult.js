@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../index.css';
+import '../assets/index.css';
 
 
 class CholesterolResult extends Component {
@@ -8,10 +8,10 @@ class CholesterolResult extends Component {
     return(
       <div>
         <ul className='results_inline'>
-          <li>LDL: {this.props.result.ldl}</li>
-          <li>HDL: {this.props.result.hdl}</li>
-          <li>Triglycerides: {this.props.result.triglycerides}</li>
-          <li>Total cholesterol: {this.props.result.total_cholesterol}</li>
+          <li className='g1'>LDL: {this.props.result.ldl}</li>
+          <li className='g1'>HDL: {this.props.result.hdl}</li>
+          <li className='g1'>Triglycerides: {this.props.result.triglycerides}</li>
+          <li className='g1'>Total cholesterol: {this.props.result.total_cholesterol}</li>
         </ul>
       </div>
     )

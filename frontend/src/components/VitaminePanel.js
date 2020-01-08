@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import '../index.css';
+import '../assets/index.css';
 
 import VitaminePanelResult from './VitaminePanelResult'
 import { vitaminePanelTestSubmit } from '../actionCreator'
@@ -53,13 +53,14 @@ class VitaminePanel extends Component {
   render(){
     return(
       <div>
-      <ul className='results_inline'>
-        <li><Link to='/main'>Back to main page</Link></li>
-        <h2>Vitamine Panel</h2>
-      </ul>
 
-        <div className='row'>
-        <div className='col'>
+      <div>
+        <li><Link to='/main'>Back to main page</Link></li>
+        <li><h2>Vitamine Panel</h2></li>
+      </div>
+
+        <div className='grid2'>
+        <div className='g1'>
         <form className='input_form'>
            <p>{this.props.errors ? this.props.errors : null}</p>
            <label>D: </label>
@@ -74,8 +75,7 @@ class VitaminePanel extends Component {
            <button onClick={this.submitClick}>Submit</button>
          </form>
         </div>
-        <div className='col'>
-          Diagram
+        <div className='g1'>
           <VitaminePanelDiagram />
         </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../index.css';
+import '../assets/index.css';
 
 
 class MetabolicPanelResult extends Component {
@@ -8,9 +8,9 @@ class MetabolicPanelResult extends Component {
     return(
       <div>
         <ul className='results_inline'>
-          <li>Sodium: {this.props.result.sodium}</li>
-          <li>Glucose: {this.props.result.glucose}</li>
-          <li>Calcium: {this.props.result.calcium}</li>
+          <li className='g1'>Sodium: {this.props.result.sodium}</li>
+          <li className='g1'>Glucose: {this.props.result.glucose}</li>
+          <li className='g1'>Calcium: {this.props.result.calcium}</li>
         </ul>
       </div>
     )

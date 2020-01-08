@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import '../index.css';
+import '../assets/index.css';
 
 import { bloodPressureTestSubmit } from '../actionCreator'
 import BloodPressureResult from './BloodPressureResult'
@@ -54,33 +54,33 @@ class BloodPressure extends Component {
     return(
       <>
         <div>
-        <ul className='results_inline'>
+
+        <div>
           <li><Link to='/main'>Back to main page</Link></li>
-          <h2>Blood pressure</h2>
-        </ul>
+          <li><h2>Blood pressure</h2></li>
+        </div>
 
-          <div className='row'>
-          <div className='col'>
-          <form className='input_form'>
-             <p>{this.props.errors ? this.props.errors : null}</p>
-             <label>Systolic: </label>
-             <input onChange={this.onChange} autoComplete="systolic" name="systolic" type="number"/>
-             <br />
-             <label>Diastolic: </label>
-             <input onChange={this.onChange} autoComplete="diastolic" name="diastolic" type="number"/>
-             <br />
-             <label>Pulse: </label>
-             <input onChange={this.onChange} autoComplete="puls" name="puls" type="number"/>
-             <br />
-             <label>Stress level: </label>
-             <input onChange={this.onChange} autoComplete="stress_level" name="stress_level" type="number"/>
-             <br />
-             <button onClick={this.submitClick}>Submit</button>
-           </form>
-          </div>
+          <div className='grid2'>
+            <div className='g1'>
+            <form className='input_form'>
+               <p>{this.props.errors ? this.props.errors : null}</p>
+               <label>Systolic: </label>
+               <input onChange={this.onChange} autoComplete="systolic" name="systolic" type="number"/>
+               <br />
+               <label>Diastolic: </label>
+               <input onChange={this.onChange} autoComplete="diastolic" name="diastolic" type="number"/>
+               <br />
+               <label>Pulse: </label>
+               <input onChange={this.onChange} autoComplete="puls" name="puls" type="number"/>
+               <br />
+               <label>Stress level: </label>
+               <input onChange={this.onChange} autoComplete="stress_level" name="stress_level" type="number"/>
+               <br />
+               <button onClick={this.submitClick}>Submit</button>
+             </form>
+            </div>
 
-          <div className='col'>
-            Diagram
+          <div className='g1'>
             <BloodPressureDiagram />
           </div>
 
