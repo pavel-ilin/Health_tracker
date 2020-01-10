@@ -4,10 +4,6 @@ Rails.application.routes.draw do
   resources :weights
   resources :vitamine_panels
   resources :blood_pressures
-  resources :conversations
-  resources :messages
-  resources :location_ratings
-  resources :my_locations
   resources :users, only: [:index, :create, :show, :update]
 
 

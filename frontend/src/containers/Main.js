@@ -17,8 +17,8 @@ class Main extends Component {
 
                   <div>
                     <div>
-                      <p className='lead'>Welcome dear <b>{this.props.name}</b></p>
-                      <p className='lead'>How are we feeling today?</p>
+                      <p className='lead'>Welcome <b>{this.props.name}</b></p>
+                      <p className='lead'>How are you feeling today?</p>
                     </div>
 
 

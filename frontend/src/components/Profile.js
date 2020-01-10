@@ -69,10 +69,11 @@ class Profile extends Component {
   render(){
     return(
       <div>
-            <ul className='results_inline'>
+            <div>
               <li><Link to='/main'>Back to main page</Link></li>
-              <h2>Edit your profile</h2>
-            </ul>
+              <li><h2>Edit your profile</h2></li>
+            </div>
+
            <form className='input_form'>
               {!this.state.initRender ? this.onLoad() : null}
               {!this.state.updateRender ? this.onUpdate() : null}

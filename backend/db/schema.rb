@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_12_191011) do
+ActiveRecord::Schema.define(version: 2019_12_11_185947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,33 +37,6 @@ ActiveRecord::Schema.define(version: 2019_12_12_191011) do
     t.index ["user_id"], name: "index_cholesterols_on_user_id"
   end
 
-  create_table "conversations", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_conversations_on_user_id"
-  end
-
-  create_table "location_ratings", force: :cascade do |t|
-    t.integer "rate"
-    t.string "comment"
-    t.bigint "user_id", null: false
-    t.bigint "my_location_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["my_location_id"], name: "index_location_ratings_on_my_location_id"
-    t.index ["user_id"], name: "index_location_ratings_on_user_id"
-  end
-
-  create_table "messages", force: :cascade do |t|
-    t.string "user_message"
-    t.string "ai_respond"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "conversation_id", null: false
-    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
-  end
-
   create_table "metabolic_panels", force: :cascade do |t|
     t.integer "sodium"
     t.integer "glucose"
@@ -72,16 +45,6 @@ ActiveRecord::Schema.define(version: 2019_12_12_191011) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_metabolic_panels_on_user_id"
-  end
-
-  create_table "my_locations", force: :cascade do |t|
-    t.string "title"
-    t.string "human_address"
-    t.string "location_type"
-    t.string "county"
-    t.integer "zipcode"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -114,10 +77,6 @@ ActiveRecord::Schema.define(version: 2019_12_12_191011) do
 
   add_foreign_key "blood_pressures", "users"
   add_foreign_key "cholesterols", "users"
-  add_foreign_key "conversations", "users"
-  add_foreign_key "location_ratings", "my_locations"
-  add_foreign_key "location_ratings", "users"
-  add_foreign_key "messages", "conversations"
   add_foreign_key "metabolic_panels", "users"
   add_foreign_key "vitamine_panels", "users"
   add_foreign_key "weights", "users"

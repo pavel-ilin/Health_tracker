@@ -1,2 +1,0 @@
-class LocationRatingsController < ApplicationController
-end

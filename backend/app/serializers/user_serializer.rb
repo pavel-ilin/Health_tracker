@@ -6,7 +6,4 @@ class UserSerializer < ActiveModel::Serializer
   has_many :cholesterols
   has_many :weights
   has_many :blood_pressures
-
-  has_many :conversations
-  has_many :location_ratings
 end
