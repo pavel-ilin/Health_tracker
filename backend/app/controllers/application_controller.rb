@@ -4,10 +4,8 @@ class ApplicationController < ActionController::API
 
   def token(user_id)
     payload = { user_id: user_id }
-    # byebug
     JWT.encode(payload, hmac_secret, 'HS256')
   end
-
 
   def hmac_secret
     ENV["HMAC_SECRET"]
