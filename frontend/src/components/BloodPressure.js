@@ -65,16 +65,16 @@ class BloodPressure extends Component {
             <form className='input_form'>
                <p>{this.props.errors ? this.props.errors : null}</p>
                <label>Systolic: </label>
-               <input onChange={this.onChange} autoComplete="systolic" name="systolic" type="number"/>
+               <input onChange={this.onChange} autoComplete="systolic" name="systolic" type="number" value={this.state.systolic}/>
                <br />
                <label>Diastolic: </label>
-               <input onChange={this.onChange} autoComplete="diastolic" name="diastolic" type="number"/>
+               <input onChange={this.onChange} autoComplete="diastolic" name="diastolic" type="number" value={this.state.diastolic}/>
                <br />
                <label>Pulse: </label>
-               <input onChange={this.onChange} autoComplete="puls" name="puls" type="number"/>
+               <input onChange={this.onChange} autoComplete="puls" name="puls" type="number" value={this.state.puls}/>
                <br />
                <label>Stress level: </label>
-               <input onChange={this.onChange} autoComplete="stress_level" name="stress_level" type="number"/>
+               <input onChange={this.onChange} autoComplete="stress_level" name="stress_level" type="number" value={this.state.stress_level}/>
                <br />
                <button onClick={this.submitClick}>Submit</button>
              </form>
