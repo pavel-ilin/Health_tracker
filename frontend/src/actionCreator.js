@@ -1,7 +1,7 @@
 
 
 export function loginAction (userData) {
-  return (dispatch) => fetch('http://localhost:3000/login', {
+  return (dispatch) => fetch('https://health-tracker-i.herokuapp.com/login', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -56,7 +56,7 @@ export function logoutAction (event) {
 }
 
 export function signUpAction (userData) {
-  return (dispatch) => fetch(`http://localhost:3000/users`, {
+  return (dispatch) => fetch(`https://health-tracker-i.herokuapp.com/users`, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -83,7 +83,7 @@ export function signUpAction (userData) {
 }
 
 export function editUserAction (userData) {
-  return (dispatch) => fetch(`http://localhost:3000/users/${localStorage.userId}`, {
+  return (dispatch) => fetch(`https://health-tracker-i.herokuapp.com/users/${localStorage.userId}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ export function editUserAction (userData) {
 
 
 export function setUserData () {
-  return (dispatch) => fetch(`http://localhost:3000/users/${localStorage.userId}`, {
+  return (dispatch) => fetch(`https://health-tracker-i.herokuapp.com/users/${localStorage.userId}`, {
     headers: {
       "Authorization": localStorage.token
     }
@@ -168,7 +168,7 @@ export function fetchApiAction (zipcode) {
 
 export function bloodPressureTestSubmit (testData) {
 
-  return (dispatch) => fetch('http://localhost:3000/blood_pressures', {
+  return (dispatch) => fetch('https://health-tracker-i.herokuapp.com/blood_pressures', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -197,7 +197,7 @@ export function bloodPressureTestSubmit (testData) {
 }
 
 export function cholesterolTestSubmit(testData){
-  return (dispatch) => fetch('http://localhost:3000/cholesterols', {
+  return (dispatch) => fetch('https://health-tracker-i.herokuapp.com/cholesterols', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -227,7 +227,7 @@ export function cholesterolTestSubmit(testData){
 
 
 export function metabolicPanelTestSubmit(testData){
-  return (dispatch) => fetch('http://localhost:3000/metabolic_panels', {
+  return (dispatch) => fetch('https://health-tracker-i.herokuapp.com/metabolic_panels', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -254,7 +254,7 @@ export function metabolicPanelTestSubmit(testData){
 }
 
 export function vitaminePanelTestSubmit(testData){
-  return (dispatch) => fetch('http://localhost:3000/vitamine_panels', {
+  return (dispatch) => fetch('https://health-tracker-i.herokuapp.com/vitamine_panels', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -286,8 +286,6 @@ export function resetUpdateState () {
     userDataUpdateComplete: false
   }
 }
-
-
 
 const actionCreator = {
   loginAction,
