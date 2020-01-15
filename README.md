@@ -29,8 +29,6 @@ Health Tracker app is built using React, Ruby, Ruby on Rails & PostgresQL. Make 
   
   You can run `npm start` but you will not be able to login and use the application correctly. 
     
-&nbsp;  
-
   ### Backend
   
   #### Windows Installation
@@ -48,7 +46,6 @@ Health Tracker app is built using React, Ruby, Ruby on Rails & PostgresQL. Make 
   - Run `rails db:seed` to populate the columns with rows of "real" data
   - Create a file called `.env` in the backend directory (/root/backend/) and add `HMAC_SECRET = "<insert secret string here>"` to the file
 
-&nbsp;
   ### First Start
    If you have not received any errors/resolve any errors you have encountered during Frontend/Backend Installation, you are ready to start Health Tracker for the first time.
     
@@ -65,8 +62,6 @@ Health Tracker app is built using React, Ruby, Ruby on Rails & PostgresQL. Make 
   - You can now access Backend portion of the app by visiting: `http://localhost:3000` 
   
   Thats it! Have fun breaking/fixing/doing whatever you want with Health Tracker.
-
-&nbsp;
 
    **If you have recieved any errors during this process, feel free to [contact me](https://www.linkedin.com/in/pavel-ilin) so I can help you and update this readme accordingly**
  
