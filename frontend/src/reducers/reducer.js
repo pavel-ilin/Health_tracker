@@ -11,9 +11,10 @@ const initialState = {
   cholesterols: [],
   weights: [],
   blood_pressures: [],
-  bloodPressureChecks: [],
+  locations: [],
+  loadBloodPressureChecks: false,
   userDataLoadingComplete: false,
-  userDataUpdateComplete: false
+  userDataUpdateComplete: false,
 }
 
 const reducer = (oldState = initialState, action) => {
@@ -86,7 +87,14 @@ const reducer = (oldState = initialState, action) => {
     case 'BLOOD_PRESSURE_MAP':
     return {
       ...oldState,
-      bloodPressureChecks: action.bloodPressureChecks
+      locations: action.bloodPressureChecks,
+      bloodPressureChecksReset: action.bloodPressureChecksReset
+    }
+    case 'FLU_SHOTS_MAP':
+    return {
+      ...oldState,
+      locations: action.fluShots,
+      bloodPressureChecksReset: action.bloodPressureChecksReset
     }
     case 'CHOLESTEROL_TEST_SUBMIT':
     return {

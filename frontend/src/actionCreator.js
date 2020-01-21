@@ -161,7 +161,20 @@ export function fetchApiAction (zipcode) {
     .then(resp => {
       dispatch({
       type: "BLOOD_PRESSURE_MAP",
-      bloodPressureChecks: resp
+      bloodPressureChecks: resp,
+      bloodPressureChecksReset: true
+    })
+    })
+}
+
+export function fetchOpenDataFlueShots (zipcode) {
+  return (dispatch) => fetch(`https://data.cityofnewyork.us/resource/w9ei-idxz.json?zip_code=${zipcode}`)
+    .then(r => r.json())
+    .then(resp => {
+      dispatch({
+      type: "FLU_SHOTS_MAP",
+      fluShots: resp,
+      bloodPressureChecksReset: false
     })
     })
 }
@@ -283,9 +296,10 @@ export function vitaminePanelTestSubmit(testData){
 export function resetUpdateState () {
   return {
     type: 'RESET_UPDATE',
-    userDataUpdateComplete: false
+    loadBloodPressureChecks: false
   }
 }
+
 
 const actionCreator = {
   loginAction,
@@ -294,10 +308,11 @@ const actionCreator = {
   setUserData,
   bloodPressureTestSubmit,
   fetchApiAction,
+  fetchOpenDataFlueShots,
   cholesterolTestSubmit,
   metabolicPanelTestSubmit,
   vitaminePanelTestSubmit,
-  resetUpdateState
+  resetUpdateState,
 }
 
 export default actionCreator

@@ -14,8 +14,18 @@ class MapContainer extends Component {
     activeMarker: {},
     selectedPlace: {},
     showingInfoWindow: false,
+    dataloaded: false,
+    dataSwithed: false
   }
 
+
+  dataloaded = () => {
+    if (this.props.locations.length > 0) {
+      this.setState({
+        dataloaded: !this.state.dataloaded
+      })
+    }
+  }
 
   onMarkerClick = (props, marker, e) => {
       this.setState({
@@ -35,9 +45,8 @@ class MapContainer extends Component {
     }
 
 
-  renderLocations () {
-    return this.props.bloodPressureChecks.map((location) => {
-      // console.log(location)
+  renderBloodPressureLocations () {
+    return this.props.locations.map((location) => {
       return <Marker
       position={{lat: parseFloat(location.latitude2), lng: parseFloat(location.longitude2)}}
       onClick={this.onMarkerClick}
@@ -48,22 +57,65 @@ class MapContainer extends Component {
     })
   }
 
-  render() {
+  renderFluShotsLocations () {
+    return this.props.locations.map((location) => {
+      console.log(location)
+      return <Marker
+      position={{lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)}}
+      onClick={this.onMarkerClick}
+      address={location.address}
+      title={location.facility_name}
+      contacts={location.phone}
+      />
+    })
+  }
 
+  render() {
     return (
       <div className='container-fluid'>
-      {!this.props.bloodPressureChecks[1] ? <h2 className='display-1'>Lodaing...</h2> :
+
+      {!this.state.dataloaded ? this.dataloaded() : null}
+
+      {!this.state.dataloaded ? <h2 className='display-1'>Loading...</h2> :
+
+      <>
+        {!this.props.bloodPressureChecksReset
+
+        ?
 
         <Map google={this.props.google}
+        style={mapStyles}
+        className={'map'}
+        zoom={14}
+        onClick={this.onMapClicked}
+        initialCenter={{
+            lat: parseFloat(this.props.locations[1].latitude),
+            lng: parseFloat(this.props.locations[1].longitude)
+        }}>
+        {this.renderFluShotsLocations()}
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}>
+            <div>
+              <h2>{this.state.activeMarker.title}</h2>
+              <p>Address: {this.state.activeMarker.address}</p>
+              <p>Contacts: {this.state.activeMarker.contacts}</p>
+            </div>
+        </InfoWindow>
+    </Map>
+
+    :
+
+    <Map google={this.props.google}
           style={mapStyles}
           className={'map'}
           zoom={14}
           onClick={this.onMapClicked}
           initialCenter={{
-              lat: parseFloat(this.props.bloodPressureChecks[1].latitude2),
-              lng: parseFloat(this.props.bloodPressureChecks[1].longitude2)
+              lat: parseFloat(this.props.locations[1].latitude2),
+              lng: parseFloat(this.props.locations[1].longitude2)
           }}>
-          {this.renderLocations()}
+          {this.renderBloodPressureLocations()}
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}>
@@ -73,7 +125,8 @@ class MapContainer extends Component {
                 <p>Contacts: {this.state.activeMarker.contacts}</p>
               </div>
           </InfoWindow>
-      </Map>
+      </Map>}
+      </>
       }
     </div>
     );
@@ -82,10 +135,12 @@ class MapContainer extends Component {
 
 
 const mapStateToProps = state => {
+  console.log(state.locations)
   return {
     token: state.token,
     userId: state.userId,
-    bloodPressureChecks: state.bloodPressureChecks
+    locations: state.locations,
+    bloodPressureChecksReset: state.bloodPressureChecksReset
   }
 }
 
