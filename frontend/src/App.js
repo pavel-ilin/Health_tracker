@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom'
 import Welcome from './containers/Welcome'
 import Main from './containers/Main'
 import Header from './containers/Header'
+import MainMenu from './components/MainMenu'
 
 import BloodPressure from './components/BloodPressure'
 import Cholesterol from './components/Cholesterol'
@@ -35,7 +36,13 @@ class App extends Component {
     return(
       <div className='App'>
 
-          {!localStorage.token ?  null : <Header /> }
+          {!localStorage.token ?  null :
+
+            <>
+            <Header />
+            <MainMenu />
+            </>
+            }
             <div>
 
             <Switch>

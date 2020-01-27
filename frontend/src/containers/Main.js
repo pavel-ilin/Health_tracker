@@ -21,64 +21,10 @@ class Main extends Component {
                       <p className='lead'>How are you feeling today?</p>
                     </div>
 
-
-                      <div className='grid1'>
-
-                        <div className='g1'>
-                          <Link to='/bloood-pressure'>
-                            <h5 className="card-title">Blood Pressure</h5>
-                            <img src={'https://sun9-19.userapi.com/c858528/v858528370/a7af4/op-Kp0298FI.jpg'} alt="bloodPressure" className="img_size"/>
-                          </Link>
-                        </div>
-
-                        <div className='g1'>
-                          <Link to='/cholesterol'>
-                            <h5 className="card-title">Cholesterol</h5>
-                            <img src={'https://sun9-38.userapi.com/c858528/v858528370/a7ae6/il7HxSFAKts.jpg'} alt="cholesterol" className="img_size"/>
-                          </Link>
-                        </div>
-
-                        <div className='g1'>
-                          <Link to='/metabolic-panel'>
-                            <h5 className="card-title">Metabolic Panel</h5>
-                            <img src={'https://sun9-60.userapi.com/c858528/v858528370/a7ad1/_EOlyRrYd4E.jpg'} alt="metabolism" className="img_size"/>
-                          </Link>
-                        </div>
-
-                        <div className='g1'>
-                          <Link to='/vitamine-panel'>
-                            <h5 className="card-title">Vitamine Panel</h5>
-                            <img src={'https://sun9-61.userapi.com/c858528/v858528370/a7adf/7HHhUqX_uRc.jpg'} alt="cholesterol" className="img_size"/>
-                          </Link>
-                        </div>
-                      </div>
-
-
-                      <div>
-                        <p className='lead'>Explore your neighborhood!</p>
-                      </div>
-
-
-                      <div className='grid2'>
-
-                        <div className='g1'>
-                          <Link to='/flue-shot'>
-                            <h5 className="card-title">Flue Shots</h5>
-                            <img src={'https://sun9-9.userapi.com/c858528/v858528370/a7ad8/IEGEuf_mmts.jpg'} alt="flu shot" className="img_size"/>
-                          </Link>
-                        </div>
-
-                        <div className='g1'>
-                          <Link to='/blood-presure-test'>
-                            <h5 className="card-title">Blood pressure tests</h5>
-                            <img src={'https://sun9-49.userapi.com/c858528/v858528370/a7aed/k9EbqbXrOEQ.jpg'} alt="blood pressure test" className="img_size"/>
-                          </Link>
-                        </div>
-                      </div>
-
-
+                    <div>
+                      <img src='https://c.pxhere.com/images/d7/e9/8eb2cba42a856d7b2b0b23f3bc32-1541055.jpg!d'  height="600" />
+                    </div>
                   </div>
-
           }
           </div>
       }
@@ -90,7 +36,11 @@ class Main extends Component {
 const mapStateToProps = state => {
   return {
     userDataLoadingComplete: state.userDataLoadingComplete,
-    name: state.name
+    name: state.name,
+    last_blood_pressures: state.blood_pressures[0],
+    last_metabolic_panels: state.metabolic_panels[0],
+    last_vitamine_panels: state.vitamine_panels[0],
+    last_cholesterols: state.cholesterols[0]
   }
 }
 

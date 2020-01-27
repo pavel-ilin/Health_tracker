@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { connect } from 'react-redux'
 
+import '../assets/index.css'
+
+
 const mapStyles = {
-  width: '60%',
-  height: '60%'
+  width: '70%',
+  height: '70%',
+  position: 'absolute',
 };
 
 
@@ -72,7 +76,7 @@ class MapContainer extends Component {
 
   render() {
     return (
-      <div className='container-fluid'>
+      <div className='map_container'>
 
       {!this.state.dataloaded ? this.dataloaded() : null}
 
