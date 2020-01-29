@@ -51,7 +51,7 @@ class MetabolicPanel extends Component {
 
   render(){
     return(
-      <div>
+      <div className='App'>
 
       <div>
         <li><Link to='/main'>Back to main page</Link></li>

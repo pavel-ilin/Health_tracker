@@ -102,6 +102,10 @@ li {
 }
 
 .img_size {
+    display: grid;
+    grid-template-rows: auto;
+    grid-gap: 10px;
+    
     padding: .25rem;
     background-color: #fff;
     border: 1px solid #dee2e6;
@@ -129,11 +133,14 @@ footer li {
   margin: 10px 10px 0 auto;
 }
 
+.App {
+  text-align: center;
+  width: 100%;
+}
 
 .main_menu {
-  display: grid;
+  display: flex;
   text-align: left;
-  position: fixed;
   margin-left: 10px;
 }
 

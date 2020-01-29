@@ -38,10 +38,14 @@ class App extends Component {
 
           {!localStorage.token ?  null :
 
+
             <>
               <Header />
-              <MainMenu />
 
+            </>
+            }
+            <div className='main_menu'>
+              <MainMenu />
               <Switch>
                 <Route path="/main"><Main /></Route>
                 <Route path="/login"><Login /></Route>
@@ -58,8 +62,7 @@ class App extends Component {
                 <Route path="/flue-shot"><FlueShot /></Route>
                 <Route path="/blood-presure-test"><BloodPressureTest /></Route>
               </Switch>
-            </>
-            }
+            </div>
       </div>
     )
   }

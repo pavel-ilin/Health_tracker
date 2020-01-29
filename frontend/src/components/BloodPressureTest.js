@@ -16,7 +16,7 @@ class BloodPressureTest extends Component {
   render(){
     this.fetchApi()
     return(
-      <div>
+      <div className='App'>
         <p><Link to='/main'>Back to main page</Link></p>
         <MapContainer />
       </div>

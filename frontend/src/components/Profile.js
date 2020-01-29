@@ -68,7 +68,7 @@ class Profile extends Component {
 
   render(){
     return(
-      <div>
+      <div className='App'>
             <div>
               <li><Link to='/main'>Back to main page</Link></li>
               <li><h2>Edit your profile</h2></li>

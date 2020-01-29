@@ -4,7 +4,7 @@ import '../assets/index.css'
 
 const MainMenu = () => (
 
-  <div className='main_menu'>
+  <div>
     <div>
       <h5>Tests results:</h5>
       <Link to='/bloood-pressure'><p className="card-title">Blood Pressure</p></Link>

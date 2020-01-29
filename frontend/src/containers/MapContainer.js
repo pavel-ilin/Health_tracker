@@ -76,7 +76,7 @@ class MapContainer extends Component {
 
   render() {
     return (
-      <div className='map_container'>
+      <div className='App'>
 
       {!this.state.dataloaded ? this.dataloaded() : null}
 
