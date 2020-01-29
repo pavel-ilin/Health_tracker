@@ -101,11 +101,7 @@ li {
   padding: 10px;
 }
 
-.img_size {
-    display: grid;
-    grid-template-rows: auto;
-    grid-gap: 10px;
-    
+.img_size {    
     padding: .25rem;
     background-color: #fff;
     border: 1px solid #dee2e6;
