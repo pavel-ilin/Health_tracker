@@ -39,29 +39,27 @@ class App extends Component {
           {!localStorage.token ?  null :
 
             <>
-            <Header />
-            <MainMenu />
+              <Header />
+              <MainMenu />
+
+              <Switch>
+                <Route path="/main"><Main /></Route>
+                <Route path="/login"><Login /></Route>
+                <Route path="/welcome"><Welcome /></Route>
+                <Route exact path='/'><Redirect to='/welcome' /></Route>
+
+                <Route path="/profile"><Profile /></Route>
+
+                <Route path="/bloood-pressure"><BloodPressure /></Route>
+                <Route path="/cholesterol"><Cholesterol /></Route>
+                <Route path="/metabolic-panel"><MetabolicPanel /></Route>
+                <Route path="/vitamine-panel"><VitaminePanel /></Route>
+
+                <Route path="/flue-shot"><FlueShot /></Route>
+                <Route path="/blood-presure-test"><BloodPressureTest /></Route>
+              </Switch>
             </>
             }
-            <div>
-
-            <Switch>
-              <Route path="/main"><Main /></Route>
-              <Route path="/login"><Login /></Route>
-              <Route path="/welcome"><Welcome /></Route>
-              <Route exact path='/'><Redirect to='/welcome' /></Route>
-
-              <Route path="/profile"><Profile /></Route>
-
-              <Route path="/bloood-pressure"><BloodPressure /></Route>
-              <Route path="/cholesterol"><Cholesterol /></Route>
-              <Route path="/metabolic-panel"><MetabolicPanel /></Route>
-              <Route path="/vitamine-panel"><VitaminePanel /></Route>
-
-              <Route path="/flue-shot"><FlueShot /></Route>
-              <Route path="/blood-presure-test"><BloodPressureTest /></Route>
-            </Switch>
-            </div>
       </div>
     )
   }

@@ -101,7 +101,6 @@ return  (
 
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
     userId: state.userId,
     bloodPressures: state.blood_pressures

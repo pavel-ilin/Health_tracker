@@ -24,14 +24,16 @@ render(){
 
           <div>
           <SignUp />
-          <button onClick={this.onClick}>Sign-in</button>
+          <br />
+          <button onClick={this.onClick}>Returning user?</button>
           </div>
 
           :
 
           <div>
           <Login />
-          <button onClick={this.onClick}>SignUp</button>
+          <br />
+          <button onClick={this.onClick}>Don't have an account?</button>
           </div>
 
         }

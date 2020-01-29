@@ -16,7 +16,7 @@ class BloodPressure extends Component {
         puls: '',
         stress_level: '',
         userId: null,
-        errors: [],
+        errors: []
     }
 
 
@@ -42,6 +42,7 @@ class BloodPressure extends Component {
       errors: []
     })
   }
+
 
   listTests () {
     return this.props.bloodPressures.map((result) => {
@@ -88,7 +89,7 @@ class BloodPressure extends Component {
 
 
           <div className='results_list'>
-            {this.listTests()}
+            {this.listTests ()}
           </div>
 
         </div>

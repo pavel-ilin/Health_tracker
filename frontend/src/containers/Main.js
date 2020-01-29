@@ -22,7 +22,7 @@ class Main extends Component {
                     </div>
 
                     <div>
-                      <img src='https://c.pxhere.com/images/d7/e9/8eb2cba42a856d7b2b0b23f3bc32-1541055.jpg!d'  height="600" />
+                      <img src='https://c.pxhere.com/images/d7/e9/8eb2cba42a856d7b2b0b23f3bc32-1541055.jpg!d'  height="500" />
                     </div>
                   </div>
           }
