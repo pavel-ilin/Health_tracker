@@ -29,7 +29,7 @@ class SignUp extends Component {
 
   render(){
     return(
-      <div>
+      <div className='App'>
            <h2>Signup</h2>
            <form className='input_form'>
               <p>{this.props.errors ? this.props.errors : null}</p>
