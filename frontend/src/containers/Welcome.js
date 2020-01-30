@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
+import '../assets/index.css';
 
 
 class Welcome extends Component {

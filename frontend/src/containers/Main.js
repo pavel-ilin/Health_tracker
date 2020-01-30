@@ -20,7 +20,7 @@ class Main extends Component {
             <FrontPage name={this.props.name}/>
           </div>
           }
-          </div>
+      </div>
     )
   }
 }

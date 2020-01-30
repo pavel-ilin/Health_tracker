@@ -40,14 +40,13 @@ class App extends Component {
           {!localStorage.token ?  <Redirect to='/welcome' /> :
 
               <>
-              {this.userData()}
-
-              <>
-              <Header />
-              <MainMenu />
+                {this.userData()}
+                <Header />
+                <MainMenu />
               </>
+            }
 
-              <>
+            <>
               <Switch>
                 <Route path="/main"><Main /></Route>
                 <Route path="/login"><Login /></Route>
@@ -64,9 +63,8 @@ class App extends Component {
                 <Route path="/flue-shot"><FlueShot /></Route>
                 <Route path="/blood-presure-test"><BloodPressureTest /></Route>
               </Switch>
-              </>
             </>
-            }
+
       </div>
     )
   }
