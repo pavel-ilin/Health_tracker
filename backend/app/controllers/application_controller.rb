@@ -2,6 +2,9 @@ class ApplicationController < ActionController::API
 
   private
 
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
+
   def token(user_id)
     payload = { user_id: user_id }
     JWT.encode(payload, hmac_secret, 'HS256')
