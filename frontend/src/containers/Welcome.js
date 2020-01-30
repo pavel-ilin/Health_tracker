@@ -17,7 +17,7 @@ onClick = event => {
 
 render(){
   return(
-    <>
+    <div className='App'>
          {this.state.signUpClick
 
            ?
@@ -38,7 +38,7 @@ render(){
 
         }
 
-    </>
+    </div>
   )
 }
 

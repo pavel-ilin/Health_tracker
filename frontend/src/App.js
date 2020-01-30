@@ -8,6 +8,7 @@ import Welcome from './containers/Welcome'
 import Main from './containers/Main'
 import Header from './containers/Header'
 import MainMenu from './components/MainMenu'
+import FrontPage from './components/FrontPage'
 
 import BloodPressure from './components/BloodPressure'
 import Cholesterol from './components/Cholesterol'
@@ -36,16 +37,17 @@ class App extends Component {
     return(
       <div className='App'>
 
-          {!localStorage.token ?  null :
+          {!localStorage.token ?  <Redirect to='/welcome' /> :
 
+              <>
+              {this.userData()}
 
-            <>
+              <>
               <Header />
-
-            </>
-            }
-            <div className='main_menu'>
               <MainMenu />
+              </>
+
+              <>
               <Switch>
                 <Route path="/main"><Main /></Route>
                 <Route path="/login"><Login /></Route>
@@ -62,7 +64,9 @@ class App extends Component {
                 <Route path="/flue-shot"><FlueShot /></Route>
                 <Route path="/blood-presure-test"><BloodPressureTest /></Route>
               </Switch>
-            </div>
+              </>
+            </>
+            }
       </div>
     )
   }

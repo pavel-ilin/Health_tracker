@@ -9,14 +9,8 @@ import Logout from '../components/Logout'
 
 class Header extends Component {
 
-  userData () {
-    if (!this.props.userDataLoadingComplete) {
-      this.props.setUserData()
-    }
-  }
 
   render(){
-    this.userData ()
     return(
           <div className='menu'>
             <ul className='results_inline'>
