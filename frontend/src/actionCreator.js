@@ -307,10 +307,10 @@ const actionCreator = {
   signUpAction,
   setUserData,
   bloodPressureTestSubmit,
-  fetchApiAction,
   cholesterolTestSubmit,
   metabolicPanelTestSubmit,
   vitaminePanelTestSubmit,
+  fetchApiAction,
   resetUpdateState
 }
 

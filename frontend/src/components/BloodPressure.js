@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import '../assets/index.css';
@@ -45,11 +43,4 @@ const BloodPressure = () => {
     )
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     bloodPressures: state.blood_pressures,
-//   }
-// }
 export default BloodPressure
-
-// export default withRouter(connect(mapStateToProps) (BloodPressure))
