@@ -8,7 +8,6 @@ import Welcome from './containers/Welcome'
 import Main from './containers/Main'
 import Header from './containers/Header'
 import MainMenu from './components/MainMenu'
-import FrontPage from './components/FrontPage'
 
 import BloodPressure from './components/BloodPressure'
 import Cholesterol from './components/Cholesterol'

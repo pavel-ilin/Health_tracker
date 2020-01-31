@@ -17,7 +17,7 @@ class Main extends Component {
           {!this.props.userDataLoadingComplete ? <h1 className='display-1'>loading...</h1>  :
 
           <div>
-            <FrontPage name={this.props.name}/>
+            <FrontPage />
           </div>
           }
       </div>
@@ -27,12 +27,7 @@ class Main extends Component {
 
 const mapStateToProps = state => {
   return {
-    userDataLoadingComplete: state.userDataLoadingComplete,
-    name: state.name,
-    last_blood_pressures: state.blood_pressures[0],
-    last_metabolic_panels: state.metabolic_panels[0],
-    last_vitamine_panels: state.vitamine_panels[0],
-    last_cholesterols: state.cholesterols[0]
+    userDataLoadingComplete: state.userDataLoadingComplete
   }
 }
 

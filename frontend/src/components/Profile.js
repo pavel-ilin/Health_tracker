@@ -103,7 +103,6 @@ class Profile extends Component {
 
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
     userId: state.userId,
     username: state.username,
