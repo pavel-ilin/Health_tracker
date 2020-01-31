@@ -17,7 +17,8 @@ let combinedArray = {
    {title: 'Stress level', color: 'black', strokeWidth: 6}
  ]
 
- const testResults = (bloodPressures) =>{
+ const testResults = (bloodPressures) => {
+
    combinedArray = {
      dataSystolic: [],
      dataDiastolic: [],
@@ -44,12 +45,8 @@ let combinedArray = {
  }
 
 const BloodPressureDiagram = () => {
-
-
     let bloodPressures = useSelector(state => state.blood_pressures);
     testResults(bloodPressures)
-    console.log(combinedArray.dataSystolic)
-
 
   return(
         <>
@@ -83,7 +80,6 @@ const BloodPressureDiagram = () => {
                 style={{stroke: 'black', strokeWidth: 3}}
                 data={combinedArray.dataStress}/>
             <YAxis />
-
 
             <DiscreteColorLegend orientation="horizontal" width={300} items={bloodPressureItems} />
 
