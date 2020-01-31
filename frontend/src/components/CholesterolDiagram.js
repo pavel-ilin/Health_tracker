@@ -3,10 +3,6 @@ import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries, VerticalGridLines
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-let dataLdl = [];
-let dataHdl = [];
-let dataTtriglycerides = [];
-let dataTotalCholesterol = [];
 
 class CholesterolDiagram extends Component {
 

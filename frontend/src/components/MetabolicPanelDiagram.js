@@ -3,9 +3,6 @@ import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries, VerticalGridLines
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-let dataSodium = [];
-let dataGlucose = [];
-let dataCalcium = [];
 
 class MetabolicPanelDiagram extends Component {
 

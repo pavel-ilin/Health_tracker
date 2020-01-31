@@ -3,10 +3,6 @@ import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries, VerticalGridLines
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-let dataD = [];
-let dataB12 = [];
-let dataA1 = [];
-
 class VitaminePanelDiagram extends Component {
 
 
