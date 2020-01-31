@@ -63,7 +63,6 @@ class MapContainer extends Component {
 
   renderFluShotsLocations () {
     return this.props.locations.map((location) => {
-      console.log(location)
       return <Marker
       position={{lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)}}
       onClick={this.onMarkerClick}
@@ -139,7 +138,6 @@ class MapContainer extends Component {
 
 
 const mapStateToProps = state => {
-  console.log(state.locations)
   return {
     token: state.token,
     userId: state.userId,

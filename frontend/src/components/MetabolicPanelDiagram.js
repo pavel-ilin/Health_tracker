@@ -1,43 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries, VerticalGridLines, DiscreteColorLegend } from 'react-vis';
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-
-class MetabolicPanelDiagram extends Component {
-
-
- mapTestResulsts () {
-   let dataSodium = [];
-   let dataGlucose = [];
-   let dataCalcium = [];
-
-  let  iterateObject = {}
-
-  if (this.props.metabolic_panels) {
-    this.props.metabolic_panels.map((test) => {
-      iterateObject = {x: test.id , y: test.sodium}
-      dataSodium = [...dataSodium, iterateObject]
-
-      iterateObject = {x: test.id , y: test.glucose}
-      dataGlucose = [...dataGlucose, iterateObject]
-
-      iterateObject = {x: test.id , y: test.calcium}
-      dataCalcium = [...dataCalcium, iterateObject]
-    })
+  let combinedArray = {
+     dataSodium: [],
+     dataGlucose: [],
+     dataCalcium: []
   }
-
-   let combinedArray = {
-    dataSodium: dataSodium,
-    dataGlucose: dataGlucose,
-    dataCalcium: dataCalcium,
-  }
-
-  return combinedArray
-}
-
-
-render(){
 
   const mitabolicPanelItems = [
     {title: 'Sodium', color: 'red', strokeWidth: 6},
@@ -45,11 +14,35 @@ render(){
     {title: 'Calcium', color: 'green', strokeWidth: 6},
   ]
 
+  const testResults = (metabolicPanels) => {
+    combinedArray = {
+       dataSodium: [],
+       dataGlucose: [],
+       dataCalcium: []
+    }
 
-let combinedArray = this.mapTestResulsts ()
-console.log(combinedArray)
+    let  iterateObject = {}
 
-return  (
+    if (metabolicPanels) {
+      metabolicPanels.map((test) => {
+        iterateObject = {x: test.id , y: test.sodium}
+        combinedArray.dataSodium = [...combinedArray.dataSodium, iterateObject]
+
+        iterateObject = {x: test.id , y: test.glucose}
+        combinedArray.dataGlucose = [...combinedArray.dataGlucose, iterateObject]
+
+        iterateObject = {x: test.id , y: test.calcium}
+        combinedArray.dataCalcium = [...combinedArray.dataCalcium, iterateObject]
+      })
+    }
+}
+
+
+const MetabolicPanelDiagram = () => {
+  let metabolicPanels = useSelector(state => state.metabolic_panels);
+  testResults(metabolicPanels)
+
+  return(
     <>
         <XYPlot
           width={500}
@@ -81,16 +74,6 @@ return  (
         </XYPlot>
         </>
   )
-  }
 }
 
-
-const mapStateToProps = state => {
-  console.log(state)
-  return {
-    userId: state.userId,
-    metabolic_panels: state.metabolic_panels
-  }
-}
-
-export default withRouter(connect(mapStateToProps) (MetabolicPanelDiagram))
+export default MetabolicPanelDiagram

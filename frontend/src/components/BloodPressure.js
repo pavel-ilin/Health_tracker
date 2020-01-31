@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
@@ -35,7 +35,7 @@ const BloodPressure = () => {
           </div>
 
           <div className='results_list'>
-            {listTests (bloodPressures)}
+            {listTests(bloodPressures)}
           </div>
 
         </div>

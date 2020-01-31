@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries, VerticalGridLines, DiscreteColorLegend } from 'react-vis';
 import { useSelector } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 
 let combinedArray = {
   dataSystolic: [],
@@ -18,13 +17,13 @@ let combinedArray = {
  ]
 
  const testResults = (bloodPressures) => {
-
    combinedArray = {
      dataSystolic: [],
      dataDiastolic: [],
      dataPuls: [],
      dataStress: []
     }
+    
    let  iterateObject = {}
 
    if (bloodPressures) {

@@ -9,12 +9,11 @@ import { metabolicPanelTestSubmit } from '../actionCreator'
 class MetabolicPanelInputForm extends Component {
 
   state = {
-        systolic: '',
-        diastolic: '',
-        puls: '',
-        stress_level: '',
-        userId: null,
-        errors: []
+    sodium: '',
+    glucose: '',
+    calcium: '',
+    userId: null,
+    errors: [],
     }
 
 
@@ -33,11 +32,11 @@ class MetabolicPanelInputForm extends Component {
     event.preventDefault()
     this.props.metabolicPanelTestSubmit(this.state)
     this.setState({
-      systolic: '',
-      diastolic: '',
-      puls: '',
-      stress_level: '',
-      errors: []
+      sodium: '',
+      glucose: '',
+      calcium: '',
+      userId: null,
+      errors: [],
     })
   }
 
@@ -45,23 +44,20 @@ class MetabolicPanelInputForm extends Component {
     return(
 
       <div className='g1'>
-      <form className='input_form'>
-         <p>{this.props.errors ? this.props.errors : null}</p>
-         <label>Systolic: </label>
-         <input onChange={this.onChange} autoComplete="systolic" name="systolic" type="number" value={this.state.systolic}/>
-         <br />
-         <label>Diastolic: </label>
-         <input onChange={this.onChange} autoComplete="diastolic" name="diastolic" type="number" value={this.state.diastolic}/>
-         <br />
-         <label>Pulse: </label>
-         <input onChange={this.onChange} autoComplete="puls" name="puls" type="number" value={this.state.puls}/>
-         <br />
-         <label>Stress level: </label>
-         <input onChange={this.onChange} autoComplete="stress_level" name="stress_level" type="number" value={this.state.stress_level}/>
-         <br />
-         <button onClick={this.submitClick}>Submit</button>
-       </form>
-      </div>
+        <form className='input_form'>
+           <p>{this.props.errors ? this.props.errors : null}</p>
+           <label>Sodium: </label>
+           <input onChange={this.onChange} autoComplete="sodium" name="sodium" type="number"/>
+           <br />
+           <label>Glucose: </label>
+           <input onChange={this.onChange} autoComplete="glucose" name="glucose" type="number"/>
+           <br />
+           <label>Calcium: </label>
+           <input onChange={this.onChange} autoComplete="calcium" name="calcium" type="number"/>
+           <br />
+           <button onClick={this.submitClick}>Submit</button>
+         </form>
+        </div>
     )
   }
 }

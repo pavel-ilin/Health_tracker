@@ -1,11 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import '../assets/index.css';
-
 import { cholesterolTestSubmit } from '../actionCreator'
 import CholesterolResult from './CholesterolResult'
 import CholesterolDiagram from './CholesterolDiagram'
@@ -42,7 +39,7 @@ const Cholesterol = () => {
         </div>
 
           <div className='results_list'>
-            {this.listTests (cholesterols)}
+            {listTests(cholesterols)}
           </div>
       </div>
     )

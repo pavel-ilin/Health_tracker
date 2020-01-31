@@ -1,42 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries, VerticalGridLines, DiscreteColorLegend } from 'react-vis';
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-
-class VitaminePanelDiagram extends Component {
+import { useSelector } from 'react-redux'
 
 
- mapTestResulsts () {
-   let dataD = [];
-   let dataB12 = [];
-   let dataA1 = [];
-
-  let  iterateObject = {}
-
-  if (this.props.vitamine_panels) {
-    this.props.vitamine_panels.map((test) => {
-      iterateObject = {x: test.id , y: test.d}
-      dataD = [...dataD, iterateObject]
-
-      iterateObject = {x: test.id , y: test.b12}
-      dataB12 = [...dataB12, iterateObject]
-
-      iterateObject = {x: test.id , y: test.a1}
-      dataA1 = [...dataA1, iterateObject]
-    })
+  let combinedArray = {
+   dataD: [],
+   dataB12: [],
+   dataA1: [],
   }
-
-   let combinedArray = {
-    dataD: dataD,
-    dataB12: dataB12,
-    dataA1: dataA1,
-  }
-
-  return combinedArray
-}
-
-
-render(){
 
   const vitaminePanelItems = [
     {title: 'D', color: 'red', strokeWidth: 6},
@@ -45,49 +16,66 @@ render(){
   ]
 
 
-let combinedArray = this.mapTestResulsts ()
+  const testResults = (vitaminePanels) => {
+    combinedArray = {
+     dataD: [],
+     dataB12: [],
+     dataA1: [],
+    }
 
-return  (
-    <>
-        <XYPlot
-          width={500}
-          height={500}>
-          <VerticalGridLines />
-          <HorizontalGridLines />
+   let  iterateObject = {}
 
-          <LineSeries
-            title="D"
-            style={{stroke: 'red', strokeWidth: 3}}
-            data={combinedArray.dataD}/>
-          <XAxis title="Time"/>
-          <YAxis />
+   if (vitaminePanels) {
+     vitaminePanels.map((test) => {
+       iterateObject = {x: test.id , y: test.d}
+       combinedArray.dataD = [...combinedArray.dataD, iterateObject]
 
-          <LineSeries
-              title="B12"
-              style={{stroke: 'blue', strokeWidth: 3}}
-              data={combinedArray.dataB12}/>
-          <YAxis />
+       iterateObject = {x: test.id , y: test.b12}
+       combinedArray.dataB12 = [...combinedArray.dataB12, iterateObject]
 
-          <LineSeries
-              title="A1"
-              style={{stroke: 'green', strokeWidth: 3}}
-              data={combinedArray.dataA1}/>
-          <YAxis />
-
-          <DiscreteColorLegend orientation="horizontal" width={300} items={vitaminePanelItems} />
-
-        </XYPlot>
-        </>
-  )
+       iterateObject = {x: test.id , y: test.a1}
+       combinedArray.dataA1 = [...combinedArray.dataA1, iterateObject]
+     })
+   }
   }
-}
+
+  const VitaminePanelDiagram = () => {
+    let vitaminePanels = useSelector(state => state.vitamine_panels);
+    testResults(vitaminePanels)
+
+  return  (
+      <>
+          <XYPlot
+            width={500}
+            height={500}>
+            <VerticalGridLines />
+            <HorizontalGridLines />
+
+            <LineSeries
+              title="D"
+              style={{stroke: 'red', strokeWidth: 3}}
+              data={combinedArray.dataD}/>
+            <XAxis title="Time"/>
+            <YAxis />
+
+            <LineSeries
+                title="B12"
+                style={{stroke: 'blue', strokeWidth: 3}}
+                data={combinedArray.dataB12}/>
+            <YAxis />
+
+            <LineSeries
+                title="A1"
+                style={{stroke: 'green', strokeWidth: 3}}
+                data={combinedArray.dataA1}/>
+            <YAxis />
+
+            <DiscreteColorLegend orientation="horizontal" width={300} items={vitaminePanelItems} />
+
+          </XYPlot>
+          </>
+        )
+    }
 
 
-const mapStateToProps = state => {
-  return {
-    userId: state.userId,
-    vitamine_panels: state.vitamine_panels
-  }
-}
-
-export default withRouter(connect(mapStateToProps) (VitaminePanelDiagram))
+export default VitaminePanelDiagram
