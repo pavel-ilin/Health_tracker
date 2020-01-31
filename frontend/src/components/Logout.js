@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { logoutAction } from '../actionCreator'
 import { Link } from 'react-router-dom'
 
 
 
-class Logout extends Component {
+const Logout = () =>  {
+  const dispatch = useDispatch();
 
-  render(){
-    return(
+    return (
       <div className='App'>
-        <button className='btn btn-danger' onClick={this.props.logoutAction}><Link style={{color: 'white'}} to='/welcome'>Logout</Link></button>
+        <button className='btn btn-danger' onClick={() => dispatch(logoutAction())}><Link style={{color: 'white'}} to='/welcome'>Logout</Link></button>
       </div>
     )
-  }
 }
 
-
-export default connect(undefined, {logoutAction}) (Logout)
+export default Logout
