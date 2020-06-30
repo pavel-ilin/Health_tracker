@@ -3,7 +3,7 @@ import '../assets/index.css';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-import Header from '../containers/Header'
+import Header from './Header'
 import FrontPage from '../components/FrontPage'
 import MainMenu from '../components/MainMenu'
 

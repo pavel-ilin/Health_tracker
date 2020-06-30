@@ -24,13 +24,11 @@ import { setUserData } from './actionCreator'
 
 class App extends Component {
 
-
   userData () {
     if (!this.props.userDataLoadingComplete) {
       this.props.setUserData()
     }
   }
-
 
   render(){
     return(
@@ -76,6 +74,5 @@ const mapStateToProps = state => {
     userDataLoadingComplete: state.userDataLoadingComplete
   }
 }
-
 
 export default withRouter(connect(mapStateToProps, {setUserData}) (App))
