@@ -1,6 +1,6 @@
 const herokuUrl = 'https://health-tracker-i.herokuapp.com'
 // const localhostUrl = 'http://localhost:3001'
-const urlInUse = herokuUrl
+let urlInUse = herokuUrl
 
 export function loginAction (userData) {
   return (dispatch) => fetch(urlInUse + '/login', {

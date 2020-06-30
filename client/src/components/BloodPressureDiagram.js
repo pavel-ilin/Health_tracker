@@ -27,19 +27,19 @@ let combinedArray = {
    let  iterateObject = {}
 
    if (bloodPressures) {
-     bloodPressures.map((test) => {
-       iterateObject = {x: test.id , y: test.systolic}
+    for(let i = 0; i < bloodPressures.length; i++){
+      iterateObject = {x: bloodPressures[i].id , y: bloodPressures[i].systolic}
        combinedArray.dataSystolic = [...combinedArray.dataSystolic, iterateObject]
 
-       iterateObject = {x: test.id , y: test.diastolic}
+       iterateObject = {x: bloodPressures[i].id , y: bloodPressures[i].diastolic}
        combinedArray.dataDiastolic = [...combinedArray.dataDiastolic, iterateObject]
 
-       iterateObject = {x: test.id , y: test.puls}
+       iterateObject = {x: bloodPressures[i].id , y: bloodPressures[i].puls}
        combinedArray.dataPuls = [...combinedArray.dataPuls, iterateObject]
 
-       iterateObject = {x: test.id , y: test.stress_level}
+       iterateObject = {x: bloodPressures[i].id , y: bloodPressures[i].stress_level}
        combinedArray.dataStress = [...combinedArray.dataStress, iterateObject]
-     })
+    }
    }
  }
 

@@ -26,16 +26,16 @@ import { useSelector } from 'react-redux'
    let  iterateObject = {}
 
    if (vitaminePanels) {
-     vitaminePanels.map((test) => {
-       iterateObject = {x: test.id , y: test.d}
+    for(let i = 0; i < vitaminePanels.length; i++){
+      iterateObject = {x: vitaminePanels[i].id , y: vitaminePanels[i].d}
        combinedArray.dataD = [...combinedArray.dataD, iterateObject]
 
-       iterateObject = {x: test.id , y: test.b12}
+       iterateObject = {x: vitaminePanels[i].id , y: vitaminePanels[i].b12}
        combinedArray.dataB12 = [...combinedArray.dataB12, iterateObject]
 
-       iterateObject = {x: test.id , y: test.a1}
+       iterateObject = {x: vitaminePanels[i].id , y: vitaminePanels[i].a1}
        combinedArray.dataA1 = [...combinedArray.dataA1, iterateObject]
-     })
+    }
    }
   }
 

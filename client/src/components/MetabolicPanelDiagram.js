@@ -24,16 +24,16 @@ import { useSelector } from 'react-redux'
     let  iterateObject = {}
 
     if (metabolicPanels) {
-      metabolicPanels.map((test) => {
-        iterateObject = {x: test.id , y: test.sodium}
+      for(let i = 0; i < metabolicPanels.length; i++){
+        iterateObject = {x: metabolicPanels[i].id , y: metabolicPanels[i].sodium}
         combinedArray.dataSodium = [...combinedArray.dataSodium, iterateObject]
 
-        iterateObject = {x: test.id , y: test.glucose}
+        iterateObject = {x: metabolicPanels[i].id , y: metabolicPanels[i].glucose}
         combinedArray.dataGlucose = [...combinedArray.dataGlucose, iterateObject]
 
-        iterateObject = {x: test.id , y: test.calcium}
+        iterateObject = {x: metabolicPanels[i].id , y: metabolicPanels[i].calcium}
         combinedArray.dataCalcium = [...combinedArray.dataCalcium, iterateObject]
-      })
+      }
     }
 }
 

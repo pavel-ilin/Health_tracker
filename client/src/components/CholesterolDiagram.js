@@ -27,22 +27,21 @@ import { useSelector } from 'react-redux'
    let  iterateObject = {}
 
    if (cholesterols) {
-     cholesterols.map((test) => {
-       iterateObject = {x: test.id , y: test.ldl}
-       combinedArray.dataLdl = [...combinedArray.dataLdl, iterateObject]
+      for(let i = 0; i < cholesterols.length; i++){
+        iterateObject = {x: cholesterols[i].id , y: cholesterols[i].ldl}
+        combinedArray.dataLdl = [...combinedArray.dataLdl, iterateObject]
 
-       iterateObject = {x: test.id , y: test.hdl}
-       combinedArray.dataHdl = [...combinedArray.dataHdl, iterateObject]
+        iterateObject = {x: cholesterols[i].id , y: cholesterols[i].hdl}
+        combinedArray.dataHdl = [...combinedArray.dataHdl, iterateObject]
 
-       iterateObject = {x: test.id , y: test.triglycerides}
-       combinedArray.dataTtriglycerides = [...combinedArray.dataTtriglycerides, iterateObject]
+        iterateObject = {x: cholesterols[i].id , y: cholesterols[i].triglycerides}
+        combinedArray.dataTtriglycerides = [...combinedArray.dataTtriglycerides, iterateObject]
 
-       iterateObject = {x: test.id , y: parseInt(test.total_cholesterol)}
-       combinedArray.dataTotalCholesterol = [...combinedArray.dataTotalCholesterol, iterateObject]
-     })
-   }
+        iterateObject = {x: cholesterols[i].id , y: parseInt(cholesterols[i].total_cholesterol)}
+        combinedArray.dataTotalCholesterol = [...combinedArray.dataTotalCholesterol, iterateObject]
+      } 
+    }
   }
-
 
 const CholesterolDiagram = () => {
   let cholesterols = useSelector(state => state.cholesterols);

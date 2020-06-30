@@ -3,10 +3,9 @@ import '../assets/index.css';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-import Header from './Header'
+// import Header from './Header'
+// import MainMenu from '../components/MainMenu'
 import FrontPage from '../components/FrontPage'
-import MainMenu from '../components/MainMenu'
-
 
 class Main extends Component {
   render(){
