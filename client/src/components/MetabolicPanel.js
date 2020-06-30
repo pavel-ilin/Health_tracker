@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import '../assets/index.css';
-import { metabolicPanelTestSubmit } from '../actionCreator'
 import MetabolicPanelResult from './MetabolicPanelResult'
 import MetabolicPanelDiagram from './MetabolicPanelDiagram'
 import MetabolicPanelInputForm from './MetabolicPanelInputForm'

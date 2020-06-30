@@ -2,7 +2,6 @@ import React from 'react'
 import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries, VerticalGridLines, DiscreteColorLegend } from 'react-vis';
 import { useSelector } from 'react-redux'
 
-
   let combinedArray = {
    dataD: [],
    dataB12: [],

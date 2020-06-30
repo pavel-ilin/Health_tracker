@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-
 import '../assets/index.css';
 import BloodPressureResult from './BloodPressureResult'
 import BloodPressureDiagram from './BloodPressureDiagram'

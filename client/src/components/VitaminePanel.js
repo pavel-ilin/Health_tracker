@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import '../assets/index.css';
-import { vitaminePanelTestSubmit } from '../actionCreator'
 import VitaminePanelResult from './VitaminePanelResult'
 import VitaminePanelDiagram from './VitaminePanelDiagram'
 import VitaminePanelInputForm from './VitaminePanelInputForm'

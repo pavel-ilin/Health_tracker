@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import '../assets/index.css';
-import { cholesterolTestSubmit } from '../actionCreator'
 import CholesterolResult from './CholesterolResult'
 import CholesterolDiagram from './CholesterolDiagram'
 import CholesterolInputForm from './CholesterolInputForm'
