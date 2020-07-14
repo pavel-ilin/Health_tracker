@@ -5,14 +5,20 @@ import '../assets/index.css';
 
  let data = {
    labels: [],
-   data: [],
+   systolic: [],
+   diastolic: [],
+   puls: [],
+   stress_level: [],
  }
 
- const testResults = (bloodPressures) => {  
+ const testResults = (bloodPressures) => {
    if (bloodPressures) {
     let index = bloodPressures.length - 1
     for(let i = 0; i < bloodPressures.length; i++){
-      data.data = [...data.data, bloodPressures[index].systolic]
+      data.systolic = [...data.systolic, bloodPressures[index].systolic]
+      data.diastolic = [...data.diastolic, bloodPressures[index].diastolic]
+      data.puls = [...data.puls, bloodPressures[index].puls]
+      data.stress_level = [...data.stress_level, bloodPressures[index].stress_level]
       data.labels = [...data.labels, bloodPressures[index].id]
       index--
     }
@@ -34,7 +40,19 @@ const BloodPressureDiagram = () => {
           datasets: [
               {
                   label: "Systolic",
-                  data: data.data,
+                  data: data.systolic,
+              },
+              {
+                label: "Diastolic",
+                data: data.diastolic,
+              },
+              {
+                label: "Puls",
+                data: data.puls,
+              },
+              {
+                label: "Stress level",
+                data: data.stress_level,
               }
           ]
       },
