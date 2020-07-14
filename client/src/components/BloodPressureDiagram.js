@@ -3,36 +3,18 @@ import Chart from 'chart.js';
 import { useSelector } from 'react-redux';
 import '../assets/index.css';
 
-let combinedArray = {
-  dataSystolic: [],
-  dataDiastolic: [],
-  dataPuls: [],
-  dataStress: []
+ let data = {
+   labels: [],
+   data: [],
  }
 
- const testResults = (bloodPressures) => {
-   combinedArray = {
-     dataSystolic: [],
-     dataDiastolic: [],
-     dataPuls: [],
-     dataStress: []
-    }
-    
-   let  iterateObject = {}
-
+ const testResults = (bloodPressures) => {  
    if (bloodPressures) {
+    let index = bloodPressures.length - 1
     for(let i = 0; i < bloodPressures.length; i++){
-      iterateObject = {x: bloodPressures[i].id , y: bloodPressures[i].systolic}
-       combinedArray.dataSystolic = [...combinedArray.dataSystolic, iterateObject]
-
-       iterateObject = {x: bloodPressures[i].id , y: bloodPressures[i].diastolic}
-       combinedArray.dataDiastolic = [...combinedArray.dataDiastolic, iterateObject]
-
-       iterateObject = {x: bloodPressures[i].id , y: bloodPressures[i].puls}
-       combinedArray.dataPuls = [...combinedArray.dataPuls, iterateObject]
-
-       iterateObject = {x: bloodPressures[i].id , y: bloodPressures[i].stress_level}
-       combinedArray.dataStress = [...combinedArray.dataStress, iterateObject]
+      data.data = [...data.data, bloodPressures[index].systolic]
+      data.labels = [...data.labels, bloodPressures[index].id]
+      index--
     }
    }
  }
@@ -48,11 +30,11 @@ const BloodPressureDiagram = () => {
       new Chart(myChartRef, {
         type: 'line',
         data: {
-          labels: ["Jan", "Feb", "March"],
+          labels: data.labels,
           datasets: [
               {
                   label: "Systolic",
-                  data: [86, 67, 91],
+                  data: data.data,
               }
           ]
       },
